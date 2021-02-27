@@ -1,0 +1,16 @@
+{% macro review_field(field, surpressError=False) %}
+<div class="form-group">
+    {% if field.errors and not surpressError %}
+        <dt>{{ field.label }}</dt>
+        <dd>{{ field.data }}</dd>
+        <dd>
+            {% for error in field.errors %}
+                <span class="text-danger">{{ error }}</span><br>
+            {% endfor %}
+        </dd>
+    {% else %}
+        <dt>{{ field.label }}</dt>
+        <dd>{{ field.data }}</dd>
+    {% endif %}
+</div>
+{% endmacro %}

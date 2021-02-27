@@ -1,0 +1,12 @@
+{% macro error_summary(form, surpress=False) %}
+    {% if form.errors and not surpress %}
+        <div class="alert alert-danger" role="alert">
+            {% for field in form.errors %}
+                {% for error in form.errors[field] %}
+                    <strong style="text-transform: capitalize;">{{ field }}:</strong>
+                    <span class="text-danger">{{ error }}</span><br>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endmacro %}

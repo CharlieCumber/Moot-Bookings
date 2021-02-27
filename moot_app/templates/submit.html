@@ -19,22 +19,22 @@
   </div>
   <div class="row">
     <div class="col">
-      <form action="/" method="POST">
+      <form action="/submit" method="POST">
         {{ form.csrf_token }}
-        {{ error_summary(form) }}
         <div class="row">
           <div class="col-md-6">
-              {{ form_field(form.country) }}
+              {{ review_field(form.country) }}
           </div>
         </div>
         <div class="row">
           <div class="col-md-6">
-              {{ form_field(form.participants) }}
+              {{ review_field(form.participants) }}
           </div>
         </div>
         <div class="row my-5">
           <div class="col">
-            <input type="submit" class="btn btn-primary btn-lg" value="Continue">
+            <input type="submit" formaction="/edit" class="btn btn-secondary btn-lg" value="Back">
+            <input type="submit" class="btn btn-primary btn-lg" value="Submit">
           </div>
         </div>
       </form>

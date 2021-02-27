@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="row">
+    <div class="col">
+      <h1>Confirmation page</h1>
+      <p>
+        <strong>Country: </strong>
+        {{ booking.country }}
+      </p>
+      <p>
+        <strong>Participants: </strong>
+        {{ booking.participants }}
+      </p>
+    </div>
+  </div>
+{% endblock %}
