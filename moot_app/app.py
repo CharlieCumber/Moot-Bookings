@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, redirect, session
+import smartsheet
 
 from moot_app.flask_config import Config
 from moot_app.data.booking import Booking
 from moot_app.forms.booking_form import BookingForm
+from moot_app.data import smartsheet
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -12,6 +14,7 @@ def index():
     session.pop('booking', None)
     booking = Booking()
     form = BookingForm(obj=booking)
+    form.country.choices = [country.name for country in smartsheet.get_countries()]
     if form.validate_on_submit():
         form.populate_obj(booking)
         session['booking'] = booking.__dict__
@@ -30,7 +33,9 @@ def submit():
     form = BookingForm(obj=booking)
     if form.validate_on_submit():
         form.populate_obj(booking)
-        # send booking to smartsheet
+        response = smartsheet.create_booking(booking)
+        if response['message'] != 'SUCCESS':
+            return render_template('submit_error.html', error=response['message'])
         return render_template('confirmation.html', booking=booking)
     return render_template('submit.html', form=form)
 

@@ -8,3 +8,7 @@ class Booking:
         if dict == None:
             return cls()
         return cls(dict['country'], dict['participants'])
+
+    @property
+    def toSheetColumnDict(self):
+        return {'Country': self.country, 'Participants': self.participants}
