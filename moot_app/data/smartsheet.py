@@ -1,6 +1,5 @@
 from os import environ
 import requests
-from moot_app.data.country import Country
 
 def get_auth_header():
     return { 'Authorization': f'Bearer {environ.get("SMARTSHEET_ACCESS_TOKEN")}' }
@@ -43,11 +42,6 @@ def get_column_map_for_sheet(sheet):
 def get_cell_value_by_column_name(row, column_name, column_map):
     column_id = column_map[column_name]
     return next((cell['value'] for cell in row['cells'] if 'value' in cell and cell['columnId'] == column_id), None)
-
-def get_countries():
-    countries_sheet = get_sheet_by_name('Contingent Bookings')
-    column_map = get_column_map_for_sheet(countries_sheet)
-    return [ Country(get_cell_value_by_column_name(row, 'Country', column_map), get_cell_value_by_column_name(row, 'Fee Category', column_map)) for row in countries_sheet['rows']]
 
 def create_booking(booking):
     sheet_id = get_sheet_id_by_name('Bookings Test')

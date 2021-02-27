@@ -14,7 +14,6 @@ def index():
     session.pop('booking', None)
     booking = Booking()
     form = BookingForm(obj=booking)
-    form.country.choices = [country.name for country in smartsheet.get_countries()]
     if form.validate_on_submit():
         form.populate_obj(booking)
         session['booking'] = booking.__dict__
