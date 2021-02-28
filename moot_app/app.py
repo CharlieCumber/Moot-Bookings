@@ -12,7 +12,7 @@ app.config.from_object(Config)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     session.pop('booking', None)
-    booking = Booking()
+    booking = Booking(request.remote_addr)
     form = BookingForm(obj=booking)
     if form.validate_on_submit():
         form.populate_obj(booking)
@@ -22,13 +22,13 @@ def index():
 
 @app.route('/edit', methods=['POST'])
 def edit():
-    booking = Booking.fromDictionary(session.get('booking', None))
+    booking = Booking.fromDictionary(request.remote_addr, session.get('booking', None))
     form = BookingForm(obj=booking)
     return render_template('index.html', form=form)
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    booking = Booking.fromDictionary(session.get('booking', None))
+    booking = Booking.fromDictionary(request.remote_addr, session.get('booking', None))
     form = BookingForm(obj=booking)
     if form.validate_on_submit():
         form.populate_obj(booking)

@@ -44,7 +44,7 @@ def get_cell_value_by_column_name(row, column_name, column_map):
     return next((cell['value'] for cell in row['cells'] if 'value' in cell and cell['columnId'] == column_id), None)
 
 def create_booking(booking):
-    sheet_id = get_sheet_id_by_name('Bookings Test')
+    sheet_id = get_sheet_id_by_name('Early Bird Bookings - Responses')
     sheet = get_sheet_by_id(sheet_id)
     column_map = get_column_map_for_sheet(sheet)
 

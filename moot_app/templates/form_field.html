@@ -1,14 +1,14 @@
 {% macro form_field(field) %}
 <div class="form-group">
     {% if field.errors %}
-        <strong>{{ field.label }}</strong>
-        {{ field(class='form-control border-danger', **kwargs) |safe }}
+        <strong>{{ field.label }}</strong>{% if field.flags.required %}<span class="text-danger"> *</span>{% endif %}
+        {{ field(class='form-control border-danger', required=False, **kwargs) |safe }}
         {% for error in field.errors %}
             <span class="text-danger">{{ error }}</span><br>
         {% endfor %}
     {% else %}
-        <strong>{{ field.label }}</strong>
-        {{ field(class='form-control', **kwargs)|safe }}
+        <strong>{{ field.label }}</strong>{% if field.flags.required %}<span class="text-danger"> *</span>{% endif %}
+        {{ field(class='form-control', required=False, **kwargs)|safe }}
     {% endif %}
 </div>
 {% endmacro %}

@@ -2,7 +2,8 @@ from moot_app.data import smartsheet
 from moot_app.data.countries import Countries
 
 class Booking:
-    def __init__(self, contact_first_name="", contact_last_name="", contact_position="", contact_email="", contact_phone="", country="", org_name="", org_email="", org_address="", org_website="", org_phone="", participants=None):
+    def __init__(self, ip_address, contact_first_name="", contact_last_name="", contact_position="", contact_email="", contact_phone="", country="", org_name="", org_email="", org_address="", org_website="", org_phone="", participants=None):
+        self.ip_address = ip_address
         self.contact_first_name = contact_first_name
         self.contact_last_name = contact_last_name
         self.contact_position = contact_position
@@ -17,10 +18,11 @@ class Booking:
         self.participants = participants
 
     @classmethod
-    def fromDictionary(cls, dict=None):
+    def fromDictionary(cls, ip_address, dict=None):
         if dict == None:
-            return cls()
+            return cls(ip_address)
         return cls(
+            ip_address,
             dict['contact_first_name'],
             dict['contact_last_name'],
             dict['contact_position'],
@@ -48,7 +50,8 @@ class Booking:
             'Organisation - Email': self.org_email,
             'Organisation - Address': self.org_address,
             'Organisation - Website': self.org_website,
-            'Organisation - Phone': self.org_phone
+            'Organisation - Phone': self.org_phone,
+            'IP Address': self.ip_address
             }
 
     @property

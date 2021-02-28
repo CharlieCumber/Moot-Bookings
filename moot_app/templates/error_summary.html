@@ -1,12 +1,21 @@
 {% macro error_summary(form, surpress=False) %}
     {% if form.errors and not surpress %}
-        <div class="alert alert-danger" role="alert">
-            {% for field in form.errors %}
-                {% for error in form.errors[field] %}
-                    <strong style="text-transform: capitalize;">{{ field }}:</strong>
-                    <span class="text-danger">{{ error }}</span><br>
+        <div class="alert alert-danger mb-5" role="alert">
+            {% if form.errors | length > 1%}
+                <h3>Form errors:</h3>
+            {% else %}
+                <h3>Form error:</h3>
+            {% endif %}
+            <ul>
+                {% for field in form.errors %}
+                    {% for error in form.errors[field] %}
+                        <li>
+                            <strong style="text-transform: capitalize;">{{ form[field].label }}:</strong>
+                            <span>{{ error }}</span>
+                        </li>
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
+            </ul>
         </div>
     {% endif %}
 {% endmacro %}
