@@ -36,6 +36,23 @@ You will need to follow the instructions ['Raw Token Requests']('https://smartsh
 
 ## Running the App
 
+### Option 1: Docker
+
+Docker compose configurations are provided for both production and development modes. The production configuration uses Gunicorn, while the development configuration uses Flask development server which has the additional benifit of hot reloading. You will need to have docker installed locally to use this option. You can istall docker [here]('https://docs.docker.com/get-docker/')
+
+To start the application within a docker container by running either:
+
+```bash
+# Production Mode
+$ docker-compose up
+```
+```bash
+# Development Mode
+$ docker-compose -f docker-compose.development.yml up
+```
+
+### Option 2: Poetry
+
 Once the all dependencies have been installed, start the Flask app in development mode within the poetry environment by running:
 ```bash
 $ poetry run flask run

@@ -17,7 +17,8 @@ def get_sheets():
     headers = build_headers({'Content-Type':'application/json'})
     url = build_url('/sheets')
     response = requests.get(url, headers=headers)
-    if response.json()['message'] != 'SUCCESS':
+    sheets = response.json()
+    if 'message' in sheets and sheets['message'] != 'SUCCESS':
         abort(500, response)
     sheets = response.json()
     return sheets
@@ -26,7 +27,8 @@ def get_sheet_by_id(id):
     headers = build_headers({'Content-Type':'application/json'})
     url = build_url(f'/sheets/{id}')
     response = requests.get(url, headers=headers)
-    if response.json()['message'] != 'SUCCESS':
+    sheet = response.json()
+    if 'message' in sheet and sheet['message'] != 'SUCCESS':
         abort(500, response)
     sheet = response.json()
     return sheet
@@ -59,7 +61,8 @@ def create_booking(booking):
     json = {"cells": cells}
 
     response = requests.post(url, headers=headers, json=json)
-    if response.json()['message'] != 'SUCCESS':
+    booking = response.json()
+    if 'message' in booking and booking['message'] != 'SUCCESS':
         abort(500, response)
 
-    return response.json()
+    return booking

@@ -1,0 +1,16 @@
+script:
+- docker build --target production --tag moot-app .
+- docker image tag moot-app "${DOCKER_USERNAME}/moot-app:latest"
+- docker image tag moot-app "${DOCKER_USERNAME}/moot-app:${TRAVIS_COMMIT}"
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker push "${DOCKER_USERNAME}/moot-app:latest"
+- docker push "${DOCKER_USERNAME}/moot-app:${TRAVIS_COMMIT}"
+- docker tag "${DOCKER_USERNAME}/moot-app:latest" registry.heroku.com/moot-booking/web
+- echo "$HEROKU_API_KEY" | docker login --username=_ --password-stdin registry.heroku.com
+- docker push registry.heroku.com/moot-booking/web
+- heroku container:release web -a moot-booking
+env:
+  global:
+  - DOCKER_USERNAME=charliecumber
+  - secure: e/4e87Qg35pO/JCs9mYiGK3xvtG17MJU5yICGQC52A+VSkvE2FSUictj7RvqNJUkxW2Df8pT+I7puWxuOYezUcDxcU2wyHeYb7lMh+6SNAhekn/scZm4dm1eIfewSr7vStGWWKJHitCtcd6eKnyqi9dLBilcPMBsHOjH2Pn00KBJvNMt7PKLla6ihTQNch3w1DOJi4yKyax/qW6+2EoYvX+Sw6hV3WxoKNKldHSgzBxuPOemDtflSDfJ57AmcJL/Y1v9QEJtL87Ty3PChblwkfKvgm4ig4l19uFfEjFbvwGoH3HORAeWOMnjKQINjQpVEcH1JMf1r0cQcYBstQgBRmT7NI31Wj33KCpSuFPcBQSgj25uJe+GbVga7q3VPUeboAILJRHc7X+13vwT5GjtbKt+hlKzMoYuUQ2L8n+fl0QBaKRzdttd1O0G6adfXgFw/iDzMhtMmFwTIVcqgk+tNhyewB8f5eGraUkM04kfEoguQIxBtik9X/3AEuKLmS5RZRLy/182WuXze3roKk9AvIeDnTDyKJUpLv0k6O5ZbVoQEe6nTqYXrENeKdCiGj54M9geLOPcryVHdIZDRr+RFZ3RGuaCVGtPEmdMKdWq3KJYn/+Ycu/WckztmQbLXaRTeHV8O+DXfNoiV4oYEadUJlzm6h3flYngiO8QJD0XT+s=
+  - secure: liVq7VsRGbs4599ia1Ub5l0LOT90pCARSGWW38g5gRUM9oMAxlOAzjzYMDXRPUcVdL6JtERiJRAT3obxtE0YzvQdJKX+Mw0DE9BQCyLKdUNT/sN390Treb4Qu+1WnyQv2JlPVYS6LRrMJ5Pv49KP0DstZecMxB8UKDqj7EYfeaIghcclOUeGpwj/7/2OjVynZHOUhEBnd9PAqxqAOl72LeKS20BD4iQVdUhE7mR3ajwykk60BUWM3Q9rLptszhgyZyRNipW16ydqZqtLDN+ycGcpIy8+3T+1kAUmZ8SFvBLooQ8UR5pcv5AGqkr+SjInsIbfkKzRB7fZTGXU6ludN/QAgxyy3SFu9DUpQ/V+pa9XRUnR4jdc722YdAAuX2VgudDMbJgMQLNxgB5RXvJjUl/NTE/lgCng0G7j484qsr64BXDe0X9sxfkuEA/dvh+qDGWoRYbmkziji+KMC2EilHzyLzoo6ZlYP/1AJLV2ku4mi2Rk8vF32lyiFtf068nvXFoCnrqo+9sQc+fAHikn/QPuo8jCbU+2PCsYcPNinezyn4pYaFmyinAddXLG0ZGQFDXBSneL7Iab6t1bQk/tE744O06FHbYuAc6cnodFHB23V8P5k+0019aUuKwSF0JrTYvKpgSXeemwEAGQ0yGKMUDUoiWktYgCBXNWaUEbBBY=

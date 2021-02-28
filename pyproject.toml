@@ -11,6 +11,8 @@ python-dotenv = "^0.14.0"
 WTForms = "^2.3.3"
 wtforms = {extras = ["email"], version = "^2.3.3"}
 email_validator = "^1.1.2"
+gunicorn = "^20.0.4"
+Flask-WTF = "^0.14.3"
 
 [tool.poetry.dev-dependencies]
 
