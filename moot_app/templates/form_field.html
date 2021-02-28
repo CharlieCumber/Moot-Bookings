@@ -1,13 +1,13 @@
-{% macro form_field(field, surpress_errors=false) %}
+{% macro form_field(field) %}
 <div class="form-group">
-    {% if field.errors and not surpressError %}
-        {{ field.label }}
+    {% if field.errors %}
+        <strong>{{ field.label }}</strong>
         {{ field(class='form-control border-danger', **kwargs) |safe }}
         {% for error in field.errors %}
             <span class="text-danger">{{ error }}</span><br>
         {% endfor %}
     {% else %}
-        {{ field.label }}
+        <strong>{{ field.label }}</strong>
         {{ field(class='form-control', **kwargs)|safe }}
     {% endif %}
 </div>

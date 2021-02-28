@@ -22,12 +22,76 @@
       <form action="/submit" method="POST">
         {{ form.csrf_token }}
         <div class="row">
+          <div class="col-md-12">
+            <h2>Who are you?</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+              {{ review_field(form.contact_first_name) }}
+          </div>
+          <div class="col-md-4">
+              {{ review_field(form.contact_last_name) }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              {{ review_field(form.contact_position) }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              {{ review_field(form.contact_email) }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              {{ review_field(form.contact_phone) }}
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-12">
+            <h2>Who do you represent?</h2>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-md-6">
               {{ review_field(form.country) }}
           </div>
         </div>
         <div class="row">
           <div class="col-md-6">
+              {{ review_field(form.org_name) }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              {{ review_field(form.org_address) }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              {{ review_field(form.org_phone) }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              {{ review_field(form.org_email) }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              {{ review_field(form.org_website) }}
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-12">
+            <h2>How many early bird spaces do you require?</h2>
+            <p>QQ Text to explain participants are aged 18 - 26 on the first day of the Moot, including DOB range.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
               {{ review_field(form.participants) }}
           </div>
         </div>

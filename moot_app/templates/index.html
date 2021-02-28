@@ -18,26 +18,93 @@
     </div>
   </div>
   <div class="row">
-    <div class="col">
-      <form action="/" method="POST">
-        {{ form.csrf_token }}
-        {{ error_summary(form) }}
-        <div class="row">
-          <div class="col-md-6">
-              {{ form_field(form.country) }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-              {{ form_field(form.participants) }}
-          </div>
-        </div>
-        <div class="row my-5">
-          <div class="col">
-            <input type="submit" class="btn btn-primary btn-lg" value="Continue">
-          </div>
-        </div>
-      </form>
+    <div class="col-md-12">
+      <h1>Early Bird Bookings</h1>
+      <p>QQ Info here on who should use the form</p>
     </div>
   </div>
+  <hr>
+  <form action="/" method="POST">
+    {{ form.csrf_token }}
+    {{ error_summary(form) }}
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Who are you?</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+          {{ form_field(form.contact_first_name) }}
+      </div>
+      <div class="col-md-4">
+          {{ form_field(form.contact_last_name) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          {{ form_field(form.contact_position) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          {{ form_field(form.contact_email) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          {{ form_field(form.contact_phone) }}
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <h2>Who do you represent?</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          {{ form_field(form.country) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          {{ form_field(form.org_name) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          {{ form_field(form.org_address, rows=4) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          {{ form_field(form.org_phone) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          {{ form_field(form.org_email) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          {{ form_field(form.org_website) }}
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <h2>How many early bird spaces do you require?</h2>
+        <p>QQ Text to explain participants are aged 18 - 26 on the first day of the Moot, including DOB range.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+          {{ form_field(form.participants) }}
+      </div>
+    </div>
+    <div class="row my-5">
+      <div class="col">
+        <input type="submit" class="btn btn-primary btn-lg" value="Continue">
+      </div>
+    </div>
+  </form>
 {% endblock %}
