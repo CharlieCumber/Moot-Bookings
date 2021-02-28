@@ -1,5 +1,6 @@
 from os import environ
 import requests
+from flask import abort
 
 def get_auth_header():
     return { 'Authorization': f'Bearer {environ.get("SMARTSHEET_ACCESS_TOKEN")}' }
@@ -16,6 +17,8 @@ def get_sheets():
     headers = build_headers({'Content-Type':'application/json'})
     url = build_url('/sheets')
     response = requests.get(url, headers=headers)
+    if response.json()['message'] != 'SUCCESS':
+        abort(500, response)
     sheets = response.json()
     return sheets
 
@@ -23,6 +26,8 @@ def get_sheet_by_id(id):
     headers = build_headers({'Content-Type':'application/json'})
     url = build_url(f'/sheets/{id}')
     response = requests.get(url, headers=headers)
+    if response.json()['message'] != 'SUCCESS':
+        abort(500, response)
     sheet = response.json()
     return sheet
 
@@ -54,4 +59,7 @@ def create_booking(booking):
     json = {"cells": cells}
 
     response = requests.post(url, headers=headers, json=json)
+    if response.json()['message'] != 'SUCCESS':
+        abort(500, response)
+
     return response.json()

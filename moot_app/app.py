@@ -33,10 +33,12 @@ def submit():
     if form.validate_on_submit():
         form.populate_obj(booking)
         response = smartsheet.create_booking(booking)
-        if response['message'] != 'SUCCESS':
-            return render_template('submit_error.html', error=response['message'])
         return render_template('confirmation.html', booking=booking)
     return render_template('submit.html', form=form)
+
+@app.errorhandler(500)
+def error(e):
+    return render_template('error.html')
 
 if __name__ == '__main__':
     app.run()
