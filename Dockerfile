@@ -11,7 +11,8 @@ COPY . /app/
 
 FROM base as production
 ENV FLASK_ENV=production
-CMD gunicorn --bind 0.0.0.0:$PORT 'moot_app.app:create_app()'
+ENV PORT=5000
+CMD gunicorn --bind 0.0.0.0:${PORT} 'moot_app.app:create_app()'
 
 FROM base as development
 ENTRYPOINT ["poetry", "run", "flask", "run", "--host", "0.0.0.0"]
