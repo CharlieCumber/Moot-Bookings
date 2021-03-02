@@ -1,3 +1,5 @@
+import math
+
 from moot_app.data import smartsheet
 from moot_app.data.countries import Countries
 
@@ -55,6 +57,10 @@ class Booking:
             }
 
     @property
+    def contact_full_name(self):
+        return f'{self.contact_first_name} {self.contact_last_name}'
+
+    @property
     def fee_category(self):
         return next((country['fee_category'] for country in Countries if country['name'] == self.country), None)
 
@@ -71,3 +77,13 @@ class Booking:
     @property
     def booking_value(self):
         return self.participants * self.fee_per_participant
+
+    @property
+    def min_participants(self):
+        if self.participants == 1:
+            return 1
+        return math.floor(self.participants*.9)
+
+    @property
+    def min_value(self):
+        return self.min_participants*self.fee_per_participant

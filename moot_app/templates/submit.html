@@ -7,81 +7,106 @@
         {{ form.csrf_token }}
         <div class="row">
           <div class="col-md-12">
-            <h2>Who are you?</h2>
+            <h2>Booking summary</h2>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4">
-              {{ review_field(form.contact_first_name) }}
-          </div>
-          <div class="col-md-4">
-              {{ review_field(form.contact_last_name) }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-              {{ review_field(form.contact_position) }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-              {{ review_field(form.contact_email) }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-              {{ review_field(form.contact_phone) }}
+          <div class="col-lg-9">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th scope="row">Country</th>
+                  <td>{{ booking.country }}</td>
+                  <td><a href="/edit#{{ form.country.name }}">Change</a></td>
+                </tr>
+                <tr>
+                  <th scope="row">Organisation</th>
+                  <td>{{ booking.org_name }}</td>
+                  <td><a href="/edit#{{ form.org_name.name }}">Change</a></td>
+                </tr>
+                <tr>
+                  <th scope="row">Address</th>
+                  <td>{{ booking.org_address }}</td>
+                  <td><a href="/edit#{{ form.org_address.name }}">Change</a></td>
+                </tr>
+                <tr>
+                  <th scope="row">Primary contact</th>
+                  <td>
+                    {{ booking.contact_full_name }}<br>
+                    {{ booking.contact_position }}<br>
+                    {{ booking.contact_email }}
+                  </td>
+                  <td><a href="/edit#{{ form.contact_first_name.name }}">Change</a></td>
+                </tr>
+                <tr>
+                  <th scope="row">Participants</th>
+                  <td>{{ booking.participants }}</td>
+                  <td><a href="/edit#{{ form.participants.name }}">Change</a></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Fee category</strong><br>
+                    <a href="https://www.scout.org/nsowsefees">WOSM fees table</a>
+                  </td>
+                  <td colspan="2">{{ booking.fee_category }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Cost per participant</th>
+                  <td colspan="2">€ {{ booking.fee_per_participant }}</td>
+                </tr>
+                <tr class="table-info">
+                  <td>
+                    <strong>Total value</strong><br>
+                    Due by 31<sup>st</sup> August 2021
+                  </td>
+                  <td colspan="2">
+                    <strong>
+                      € {{ booking.booking_value | numberFormat  }}
+                    </strong>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
         <div class="row mt-5">
-          <div class="col-md-12">
-            <h2>Who do you represent?</h2>
+          <div class="col-md-9">
+            <h2>Terms and Conditions</h2>
+            <P>By making an early bird booking you are agreeing to the full terms and conditions detailed <a class="text-danger">here (LINK TO BE INSERTED HERE)</a></P>
+            <ul>
+              <li>
+                There is no booking fee for early bird spaces, with the entire fee due by the <strong>31<sup>st</sup> August 2021</strong>
+              </li>
+              <li>
+                Your submission of this form and subsequent confirmation by the Moot Team will secure the places you require, at the early bird (early payment) fee rate.
+              </li>
+              <li>
+                Some flexibility is built into the early bird process and figures will be allowed to increase or decrease by 10% without penalty up until the 31<sup>st</sup> July 2021.
+                This means that by submitting the form <strong>you are commiting to pay a minimum of € {{ booking.min_value | numberFormat }}</strong> ({{ booking.min_participants }} participants) by the 31<sup>st</sup> August 2021.
+              </li>
+              <li>
+                If a contingent only makes a partial payment for their allocation of early bird spaces by the 31st August 2021, all spaces booked will default to full-price, and the remaining balance will be due by the standard booking payment conditions and deadlines.
+              </li>
+              <li>
+                Any additional participants, either beyond the 10% flexibility, or booking after the 31st July 2021, will follow the standard booking procedure and be subject to the standard booking process which will open in September 2021.
+              </li>
+            </ul>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
-              {{ review_field(form.country) }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-              {{ review_field(form.org_name) }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-              {{ review_field(form.org_address) }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-              {{ review_field(form.org_phone) }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-              {{ review_field(form.org_email) }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-              {{ review_field(form.org_website) }}
-          </div>
-        </div>
-        <div class="row mt-5">
-          <div class="col-md-12">
-            <h2>How many early bird spaces do you require?</h2>
-            <p>QQ Text to explain participants are aged 18 - 26 on the first day of the Moot, including DOB range.</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3">
-              {{ review_field(form.participants) }}
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-auto">
+                {{ form.terms_acceptance }}
+              </div>
+              <div class="col text-danger">
+                <strong>TODO: </strong> write clear declaration of adherance to the T&Cs, confirmation the person is empowered to make a financial commitment on behalf of their NSO and they give GDPR consent to processing of their personal data.
+              </div>
+            </div>
           </div>
         </div>
         <div class="row my-5">
           <div class="col">
-            <input type="submit" formaction="/edit" class="btn btn-secondary btn-lg" value="Back">
             <input type="submit" class="btn btn-primary btn-lg" value="Submit">
           </div>
         </div>
