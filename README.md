@@ -40,7 +40,7 @@ You will need to follow the instructions ['Raw Token Requests']('https://smartsh
 
 Docker compose configurations are provided for both production and development modes. The production configuration uses Gunicorn, while the development configuration uses Flask development server which has the additional benifit of hot reloading. You will need to have docker installed locally to use this option. You can istall docker [here]('https://docs.docker.com/get-docker/')
 
-To start the application within a docker container by running either:
+To start the application within a docker container, firstly ensure you have docker desktop installed and running, then you can run either command from your terminal:
 
 ```bash
 # Production Mode
@@ -69,3 +69,32 @@ You should see output similar to the following:
  * Debugger PIN: 226-556-590
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+
+## Deployment
+
+Travis CI is used to provide a continuous delivery of changes to the [deployed application on heroku]('https://moot-bookings.herokuapp.com/').
+The pipeline builds a docker image of the production configured application and pushes the image to the heroku image repository for release.
+
+### Manual Deployment
+
+You can manually deploy the application from the terminal, but note this deployment will be overwritten should the automatic deployment pipline be triggered by a commit to master.
+Before running the code below, ensure you have docker desktop running.
+
+Firstly, get the heroku api key and set it as an enviroment variable (replacing the ). and log into the heroku docker image repository:
+```bash
+$ HEROKU_API_KEY=api_key_from_heroku_settings_page_here
+$ echo "$HEROKU_API_KEY" | docker login --username=_ --password-stdin registry.heroku.com
+```
+
+Secondly, build and push the image to the heroku image repository:
+```bash
+$ docker build --target production --tag moot-app .
+$ docker image tag moot-app registry.heroku.com/moot-bookings/web
+$ docker push registry.heroku.com/moot-bookings/web
+```
+
+Finally, trigger the release of the image and the replacement of the deployed application version:
+```bash
+$ heroku container:release web -a moot-bookings
+```

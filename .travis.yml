@@ -1,3 +1,7 @@
+branches:
+  only:
+  - master
+
 script:
 - docker build --target production --tag moot-app .
 - docker image tag moot-app "${DOCKER_USERNAME}/moot-app:latest"
