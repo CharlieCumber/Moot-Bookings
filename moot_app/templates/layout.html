@@ -1,44 +1,24 @@
 {%- from 'form_field.html' import form_field %}
 {%- from 'review_field.html' import review_field %}
 {%- from 'error_summary.html' import error_summary %}
-
-{% macro headerItem(text, endpoint) -%}
-  {% if endpoint == request.url_rule.endpoint %}
-  <li class="nav-item active">
-    <a class="nav-link" href="{{ url_for(endpoint) }}">{{ text }} <span class="sr-only">(current)</span></a>
-  </li>
-  {% else %}
-  <li class="nav-item">
-    <a class="nav-link" href="{{ url_for(endpoint) }}">{{ text }} </a>
-  </li>
-  {% endif %}
-{%- endmacro %}
+{%- from 'jumbotron.html' import jumbotron %}
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
     <title>{% block title %}16th World Scout Moot - Ireland 2022{% endblock %}</title>
   </head>
   <body>
     {% block nav %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-      <a class="navbar-brand" href="{{ url_for('index') }}">Early Bird Bookings</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-        </ul>
-      </div>
+      <a class="navbar-brand" href="{{ url_for('index') }}">16<sup>th</sup> World Scout Moot - Ireland 2022</a>
     </nav>
     {% endblock %}
-
     <div class="container body-content">
+      {{ jumbotron() }}
       {% block content %}{% endblock %}
     </div>
 

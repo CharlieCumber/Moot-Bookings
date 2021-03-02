@@ -1,0 +1,66 @@
+{% macro jumbotron() %}
+    <div class="jumbotron">
+        <div class="row align-items-center">
+            <div class="col-md-auto">
+                <img src="{{url_for('static', filename='images/MootLogo.svg')}}" class="moot-logo"/>
+            </div>
+            <div class="col-md text-container" style="margin-left: 20px">
+                <h1 class="moot-title display-4">16<sup>th</sup> World Scout Moot</h1>
+                <hr class="title-divider">
+                <span class="lead">18 - 28<sup>th</sup> July 2022, Ireland</span>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Extra small devices (portrait phones, less than 576px) */
+        .moot-logo {
+            max-height: 200px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .text-container {
+            text-align: center;
+        }
+
+        .moot-title {
+            display: none;
+        }
+
+        .title-divider {
+            display: none;
+        }
+        
+        /* Small devices (landscape phones, 576px and up) */
+        @media (min-width: 576px) {
+            .jumbotron {
+                padding: 2rem;
+            }
+            .moot-title {
+                display: block;
+                font-size: 2.5rem;
+            }
+            .title-divider {
+                display: block;
+            }
+        }
+
+        /* Medium devices (tablets, 768px and up) */
+        @media (min-width: 768px) {
+            .moot-logo {
+                margin-bottom: 0px;
+            }
+            .text-container {
+                text-align: left;
+            }
+        }
+
+        /* // Large devices (desktops, 992px and up) */
+        @media (min-width: 992px) {
+            .moot-title{
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+{% endmacro %}

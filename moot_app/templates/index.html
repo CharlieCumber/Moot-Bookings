@@ -1,32 +1,18 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <div class="jumbotron">
-    <div class="row align-items-center">
-      <div class="col-md-auto">
-        <img src="{{url_for('static', filename='images/MootLogo.svg')}}" style="max-height:200px; width: 100%;"/>
-      </div>
-      <div class="col-md title-container" style="margin-left: 20px">
-        <h1 class="page-title display-4">16<sup>th</sup> World Scout Moot</h1>
-        <hr>
-        <span class="lead">
-          18 - 28<sup>th</sup> July 2022, Ireland
-        </span>
-      </div>
-    </div>
-  </div>
   <div class="row">
     <div class="col-lg-9">
       <h2>Early Bird Bookings</h2>
-      <p><strong>TODO: Some introductory text on early bird... </strong><br>
-        Early bird booking is an oportunity to recive a discount on participant fees in return to earlier payment of the fees. This offer is open to all NSO wishing to attend the 16<sup>th</sup> World Scout Moot, Ireland.</p>
-      <div class="alert alert-info my-4" role="alert">
-        <p>Only National Scout Organisations (NSO) with WOSM membership may register a Contingent, and there can only be one Contingent per NSO.</p>
-        <span>You should only complete this form if you are empowered to represent your NSO and make a financial commitment on behalf of your organisation.</span>
-      </div>
+      {% if not form.errors %}
+        <p class="text-danger"><strong>TODO:</strong> Some introductory text on what the early bird offer is... </strong><br>
+        <div class="alert alert-info my-4" role="alert">
+          <p>Only National Scout Organisations (NSO) with WOSM membership may register a Contingent, and there can only be one Contingent per NSO.</p>
+          <span>You should only complete this form if you are empowered to represent your NSO and make a financial commitment on behalf of your organisation.</span>
+        </div>
+      {% endif %}
     </div>
   </div>
-  <hr>
   <form action="/" method="POST">
     {{ form.csrf_token }}
     {{ error_summary(form) }}
@@ -117,34 +103,4 @@
       </div>
     </div>
   </form>
-
-  <style>
-    .page-title {
-      font-size: 2rem;
-    }
-    .title-container {
-      text-align: center;
-    }
-
-    @media (min-width: 768px) {
-      .page-title {
-        font-size: 2.5rem;
-      }
-      .title-container {
-        text-align: left;
-      }
-    }
-
-    @media (min-width: 992px) {
-      .page-title {
-        font-size: 3rem;
-      }
-    }
-
-    @media (min-width: 1200px) {
-      .page-title {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
 {% endblock %}

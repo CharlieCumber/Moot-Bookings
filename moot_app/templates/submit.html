@@ -1,22 +1,6 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <div class="jumbotron">
-    <div class="row">
-      <div class="col-3">
-        <img src="{{url_for('static', filename='images/MootLogo.svg')}}" style="width: 100%; margin: -2rem 0;"/>
-      </div>
-      <div class="col" style="margin-left: 20px">
-        <h1 class="display-4">16th World Scout Moot</h1>
-        <hr>
-        <p class="lead">
-          18 - 28th July 2022
-          <br>
-          Ireland
-        </p>
-      </div>
-    </div>
-  </div>
   <div class="row">
     <div class="col">
       <form action="/submit" method="POST">
