@@ -5,10 +5,10 @@ script:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - docker push "${DOCKER_USERNAME}/moot-app:latest"
 - docker push "${DOCKER_USERNAME}/moot-app:${TRAVIS_COMMIT}"
-- docker tag "${DOCKER_USERNAME}/moot-app:latest" registry.heroku.com/moot-booking/web
+- docker tag "${DOCKER_USERNAME}/moot-app:latest" registry.heroku.com/moot-bookings/web
 - echo "$HEROKU_API_KEY" | docker login --username=_ --password-stdin registry.heroku.com
-- docker push registry.heroku.com/moot-booking/web
-- heroku container:release web -a moot-booking
+- docker push registry.heroku.com/moot-bookings/web
+- heroku container:release web -a moot-bookings
 env:
   global:
   - DOCKER_USERNAME=charliecumber
