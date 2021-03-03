@@ -10,9 +10,13 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    @app.route('/', methods=['GET', 'POST'])
+    @app.route('/', methods=['GET'])
     def index():
         session.pop('booking', None)
+        return render_template('index.html')
+
+    @app.route('/form', methods=['GET', 'POST'])
+    def early_bird_form():
         booking = Booking(request.remote_addr)
         form = BookingForm(obj=booking)
         form.terms_acceptance.validators=[Optional()]
@@ -20,13 +24,13 @@ def create_app():
             form.populate_obj(booking)
             session['booking'] = booking.__dict__
             return render_template('submit.html', form=form, booking=booking)
-        return render_template('index.html', form=form)
+        return render_template('early_bird_form.html', form=form)
 
     @app.route('/edit')
     def edit():
         booking = Booking.fromDictionary(request.remote_addr, session.get('booking', None))
         form = BookingForm(obj=booking)
-        return render_template('index.html', form=form)
+        return render_template('early_bird_form.html', form=form)
 
     @app.route('/submit', methods=['POST'])
     def submit():

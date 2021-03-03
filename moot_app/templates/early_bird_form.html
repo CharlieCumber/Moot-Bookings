@@ -1,8 +1,10 @@
-{%- from 'error_summary.html' import error_summary %}
-{%- from 'form_field.html' import form_field %}
+{% extends "layout.html" %}
 
-{% macro early_bird_form(form) %}
-    <form action="/" method="POST">
+{% block content %}
+  <div class="row">
+    <div class="col-lg-9">
+      <h2>Early Bird Bookings</h2>
+      <form action="/form" method="POST">
         {{ form.csrf_token }}
         {{ error_summary(form) }}
         <div class="row">
@@ -92,4 +94,6 @@
             </div>
         </div>
     </form>
-{% endmacro %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,18 +1,19 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-lg-9">
-      <h2>Early Bird Bookings</h2>
-      {% if not form.errors %}
-        <p class="text-danger"><strong>TODO:</strong> Some introductory text on what the early bird offer is... (important dates, fees table, World Conference viability assessment dates, how standard bookings will work, general moot planning timeline)</strong><br>
-        <div class="alert alert-info my-4" role="alert">
-          <p>Only National Scout Organisations (NSO) with WOSM membership may register a Contingent, and there can only be one Contingent per NSO.</p>
-          <span>You should only complete this form if you are empowered to represent your NSO and make a financial commitment on behalf of your organisation.</span>
+    <div class="row">
+        <div class="col-lg-9">
+            <h2>Early Bird Bookings</h2>
+            <p class="text-danger"><strong>TODO:</strong> Some introductory text on what the early bird offer is... (important dates, fees table, World Conference viability assessment dates, how standard bookings will work, general moot planning timeline)</strong><br>
+            <div class="alert alert-info my-4" role="alert">
+              <p>Only National Scout Organisations (NSO) with WOSM membership may register a Contingent, and there can only be one Contingent per NSO.</p>
+              <span>You should only complete this form if you are empowered to represent your NSO and make a financial commitment on behalf of your organisation.</span>
+            </div>
         </div>
-      {% endif %}
-      {{ early_bird_form(form) }}
     </div>
-  </div>
-  
+    <div class="row my-5">
+      <div class="col">
+        <a class="btn btn-lg btn-primary" href="/form">Start</a>
+      </div>
+    </div>
 {% endblock %}
