@@ -42,9 +42,11 @@ def create_app():
             return render_template('confirmation.html', booking=booking)
         return render_template('submit.html', form=form, booking=booking)
 
-    @app.before_first_request
+    @app.before_request
     def set_iframe_session_var():
-        session['iframeMode'] = (request.args.get("iframeMode") == "true")
+        url_arg = request.args.get("iframeMode", 'not-set')
+        if url_arg != 'not-set':
+            session['iframeMode'] = (url_arg == "true")
 
     @app.errorhandler(500)
     def error(e):
