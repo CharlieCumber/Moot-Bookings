@@ -81,7 +81,7 @@ The pipeline builds a docker image of the production configured application and 
 You can manually deploy the application from the terminal, but note this deployment will be overwritten should the automatic deployment pipline be triggered by a commit to master.
 Before running the code below, ensure you have docker desktop running.
 
-Firstly, get the heroku api key and set it as an enviroment variable (replacing the ). and log into the heroku docker image repository:
+Firstly, get the heroku api key and set it as an enviroment variable. Then you will be able to log into the heroku docker image repository:
 ```bash
 $ HEROKU_API_KEY=api_key_from_heroku_settings_page_here
 $ echo "$HEROKU_API_KEY" | docker login --username=_ --password-stdin registry.heroku.com

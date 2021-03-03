@@ -1,0 +1,12 @@
+__pycache__
+.pytest_cache
+.vagrant
+.vscode
+.env
+.env.template
+.git
+.gitignore
+app.log
+Dockerfile
+chromedriver.exe
+Vagrantfile
