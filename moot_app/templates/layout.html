@@ -19,10 +19,14 @@
           <a class="navbar-brand" href="{{ url_for('index') }}">16<sup>th</sup> World Scout Moot - Ireland 2022</a>
         </nav>
       {% endblock %}
+    {% else %}
+      {% set main_container_class = "container body-content" %}
     {% endif %}
 
-      <div class="{{ main_container_class }}">
-        {{ jumbotron() }}
+      <div class="{{ main_container_class }}" style="padding: 3px;">
+        {% if not session['iframeMode'] == true %}
+          {{ jumbotron() }}
+        {% endif %}
         {% block content %}{% endblock %}
       </div>
 
