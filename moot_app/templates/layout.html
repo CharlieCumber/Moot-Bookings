@@ -13,18 +13,7 @@
     <title>{% block title %}16th World Scout Moot - Ireland 2022{% endblock %}</title>
   </head>
   <body>
-    {% if not session['iframeMode'] == true %}
-      {% set main_container_class = "container body-content" %}
-      {% block nav %}
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-          <a class="navbar-brand" href="{{ url_for('index') }}">16<sup>th</sup> World Scout Moot - Ireland 2022</a>
-        </nav>
-      {% endblock %}
-    {% else %}
-      {% set main_container_class = "container body-content" %}
-    {% endif %}
-
-      <div class="{{ main_container_class }}" style="padding: 3px;">
+      <div style="padding: 3px;">
         {{ jumbotron() }}
         {% block content %}{% endblock %}
       </div>
