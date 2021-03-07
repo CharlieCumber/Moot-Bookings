@@ -1,9 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-lg-9">
-      <form action="/form/step/{{step}}" method="POST">
+    <form action="/form/step/{{step}}" method="POST">
         {{ form.csrf_token }}
         {{ error_summary(form) }}
         {% if step == 1 %}
@@ -102,6 +100,4 @@
             </div>
         </div>
     </form>
-    </div>
-  </div>
 {% endblock %}
