@@ -25,9 +25,7 @@
     {% endif %}
 
       <div class="{{ main_container_class }}" style="padding: 3px;">
-        {% if not session['iframeMode'] == true %}
-          {{ jumbotron() }}
-        {% endif %}
+        {{ jumbotron() }}
         {% block content %}{% endblock %}
       </div>
 

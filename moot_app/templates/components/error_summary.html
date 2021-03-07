@@ -1,6 +1,6 @@
 {% macro error_summary(form) %}
     {% if form.errors %}
-        <div class="alert alert-danger my-4" role="alert">
+        <div class="alert alert-danger mt-2 mb-4" role="alert">
             {% if form.errors | length > 1%}
                 <h4>Form errors:</h4>
             {% else %}

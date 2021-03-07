@@ -32,11 +32,12 @@ def create_app():
             form.populate_obj(booking)
             session['booking'] = booking.__dict__
             if step == 3:
-                return redirect(url_for('submit'))
-            return redirect(url_for('early_bird_form', step=step+1))
+                return render_template('submit.html', form=form, booking=booking)
+            step +=1
+            return render_template('early_bird_form.html', form=form, step=step)
         return render_template('early_bird_form.html', form=form, step=step)
 
-    @app.route('/submit', methods=['GET','POST'])
+    @app.route('/submit', methods=['POST'])
     def submit():
         booking = Booking.fromDictionary(request.remote_addr, session.get('booking', None))
         form = BookingForm(obj=booking)
