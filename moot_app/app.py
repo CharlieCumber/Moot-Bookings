@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, url_for
 from wtforms.validators import Optional
 
 from moot_app.flask_config import Config
@@ -16,23 +16,27 @@ def create_app():
         return render_template('index.html')
 
     @app.route('/form', methods=['GET', 'POST'])
-    def early_bird_form():
-        booking = Booking(request.remote_addr)
+    @app.route('/form/step/<int:step>', methods=['GET', 'POST'])
+    def early_bird_form(step=1):
+        booking = Booking.fromDictionary(request.remote_addr, session.get('booking', None))
         form = BookingForm(obj=booking)
+        if step == 1:
+            form.org_name.validators = [Optional()]
+            form.org_email.validators = [Optional()]
+            form.org_address.validators = [Optional()]
+            form.country.validators = [Optional()]
+        if step <= 2:
+            form.participants.validators = [Optional()]
         form.terms_acceptance.validators=[Optional()]
         if form.validate_on_submit():
             form.populate_obj(booking)
             session['booking'] = booking.__dict__
-            return render_template('submit.html', form=form, booking=booking)
-        return render_template('early_bird_form.html', form=form)
+            if step == 3:
+                return redirect(url_for('submit'))
+            return redirect(url_for('early_bird_form', step=step+1))
+        return render_template('early_bird_form.html', form=form, step=step)
 
-    @app.route('/edit')
-    def edit():
-        booking = Booking.fromDictionary(request.remote_addr, session.get('booking', None))
-        form = BookingForm(obj=booking)
-        return render_template('early_bird_form.html', form=form)
-
-    @app.route('/submit', methods=['POST'])
+    @app.route('/submit', methods=['GET','POST'])
     def submit():
         booking = Booking.fromDictionary(request.remote_addr, session.get('booking', None))
         form = BookingForm(obj=booking)
