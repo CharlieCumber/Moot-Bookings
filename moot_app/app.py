@@ -4,7 +4,7 @@ from wtforms.validators import Optional
 from moot_app.flask_config import Config
 from moot_app.data.booking import Booking
 from moot_app.forms.booking_form import BookingForm
-from moot_app.data import smartsheet
+from moot_app.data import smartsheet, database
 
 def create_app():
     app = Flask(__name__)
@@ -38,7 +38,8 @@ def create_app():
         form = BookingForm(obj=booking)
         if form.validate_on_submit():
             form.populate_obj(booking)
-            response = smartsheet.create_booking(booking)
+            smartsheet.create_booking(booking)
+            database.insert_booking(booking)
             return render_template('confirmation.html', booking=booking)
         return render_template('submit.html', form=form, booking=booking)
 

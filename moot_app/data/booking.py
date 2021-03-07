@@ -14,7 +14,7 @@ class Booking:
         self.org_name = org_name
         self.org_email = org_email
         self.org_address = org_address
-        self.org_address = org_address_postcode
+        self.org_address_postcode = org_address_postcode
         self.org_website = org_website
         self.org_phone = org_phone
         self.participants = participants
