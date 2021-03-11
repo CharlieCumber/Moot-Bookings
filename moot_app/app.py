@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, session, url_for
 from wtforms.validators import Optional
+from flask_mobility import Mobility
 
 from moot_app.flask_config import Config
 from moot_app.data.booking import Booking
@@ -9,6 +10,7 @@ from moot_app.data import smartsheet, database
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+    Mobility(app)
 
     @app.route('/', methods=['GET'])
     def index():

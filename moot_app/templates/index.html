@@ -13,7 +13,11 @@
     </div>
     <div class="row my-5">
       <div class="col">
-        <a class="btn btn-lg btn-primary" href="/form">Start</a>
+        {% if request.MOBILE %}
+          <a class="btn btn-lg btn-primary" target="_blank" href="https://moot-bookings.herokuapp.com/form?iframeMode=false">Start</a>
+        {% else %}
+          <a class="btn btn-lg btn-primary" href="/form">Start</a>
+        {% endif %}
       </div>
     </div>
 {% endblock %}

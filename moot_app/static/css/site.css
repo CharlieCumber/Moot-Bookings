@@ -2,3 +2,7 @@
     content:" *";
     color: red;
 }
+
+.iframe-container {
+    padding: 3px;
+}
