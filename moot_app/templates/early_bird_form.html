@@ -1,99 +1,95 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <form action="/form/step/{{step}}" method="POST">
+    <form action="/form" method="POST">
         {{ form.csrf_token }}
         {{ error_summary(form) }}
-        {% if step == 1 %}
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>Who are you?</h2>
-                </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Who are you?</h2>
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    {{ form_field(form.contact_first_name) }}
-                </div>
-                <div class="col-md-4">
-                    {{ form_field(form.contact_last_name) }}
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_field(form.contact_first_name) }}
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_field(form.contact_position) }}
-                </div>
+            <div class="col-md-4">
+                {{ form_field(form.contact_last_name) }}
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_field(form.contact_email) }}
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_field(form.contact_position) }}
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_field(form.contact_phone) }}
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_field(form.contact_email) }}
             </div>
-        {% elif step == 2 %}
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Who do you represent?</h2>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_field(form.contact_phone) }}
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_field(form.country) }}
-                </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-lg-12">
+                <h2>Who do you represent?</h2>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_field(form.org_name) }}
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_field(form.country) }}
             </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    {{ form_field(form.org_address, rows=4) }}
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_field(form.org_name) }}
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    {{ form_field(form.org_address_postcode) }}
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                {{ form_field(form.org_address, rows=4) }}
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_field(form.org_phone) }}
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_field(form.org_address_postcode) }}
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_field(form.org_email) }}
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_field(form.org_phone) }}
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_field(form.org_website) }}
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_field(form.org_email) }}
             </div>
-        {% else %}
-            <div class="row">
-                <div class="col-lg-9">
-                    <h2>How many early bird spaces do you require?</h2>
-                    <p>
-                        Young people aged between 18 and 26 years on the first day of the Moot (18<sup>th</sup> July 2022) are eligible to attend as participants.
-                        In effect this means that participants must have been born between the 19<sup>th</sup> July 1995 and the 18<sup>th</sup> July 2004.
-                    </p>
-                    <p>
-                        WOSM guidelines for the World Scout Moot restrict any one contingent size to a maximum of 10% of the expected participants. We expect 5,000
-                        participants to attend the Moot, therefore the maximum size of a contingent may be 500 participants. 
-                    </p>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_field(form.org_website) }}
             </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    {{ form_field(form.participants) }}
-                </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-lg-9">
+                <h2>How many early bird spaces do you require?</h2>
+                <p>
+                    Young people aged between 18 and 26 years on the first day of the Moot (18<sup>th</sup> July 2022) are eligible to attend as participants.
+                    In effect this means that participants must have been born between the 19<sup>th</sup> July 1995 and the 18<sup>th</sup> July 2004.
+                </p>
+                <p>
+                    WOSM guidelines for the World Scout Moot restrict any one contingent size to a maximum of 10% of the expected participants. We expect 5,000
+                    participants to attend the Moot, therefore the maximum size of a contingent may be 500 participants. 
+                </p>
             </div>
-        {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                {{ form_field(form.participants) }}
+            </div>
+        </div>
         <div class="row my-5">
             <div class="col">
                 <input type="submit" class="btn btn-primary btn-lg" value="Continue">

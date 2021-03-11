@@ -18,26 +18,15 @@ def create_app():
         return render_template('index.html')
 
     @app.route('/form', methods=['GET', 'POST'])
-    @app.route('/form/step/<int:step>', methods=['GET', 'POST'])
-    def early_bird_form(step=1):
+    def early_bird_form():
         booking = Booking.fromDictionary(request.remote_addr, session.get('booking', None))
         form = BookingForm(obj=booking)
-        if step == 1:
-            form.org_name.validators = [Optional()]
-            form.org_email.validators = [Optional()]
-            form.org_address.validators = [Optional()]
-            form.country.validators = [Optional()]
-        if step <= 2:
-            form.participants.validators = [Optional()]
         form.terms_acceptance.validators=[Optional()]
         if form.validate_on_submit():
             form.populate_obj(booking)
             session['booking'] = booking.__dict__
-            if step == 3:
-                return render_template('submit.html', form=form, booking=booking)
-            step +=1
-            return render_template('early_bird_form.html', form=form, step=step)
-        return render_template('early_bird_form.html', form=form, step=step)
+            return render_template('submit.html', form=form, booking=booking)
+        return render_template('early_bird_form.html', form=form)
 
     @app.route('/submit', methods=['POST'])
     def submit():
