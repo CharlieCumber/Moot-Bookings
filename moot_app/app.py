@@ -18,6 +18,7 @@ def create_app():
         return render_template('index.html')
 
     @app.route('/form', methods=['GET', 'POST'])
+    @app.route('/form/edit')
     def early_bird_form():
         booking = Booking.fromDictionary(request.remote_addr, session.get('booking', None))
         form = BookingForm(obj=booking)

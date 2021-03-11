@@ -3,7 +3,7 @@ import math
 from moot_app.data.countries import Countries
 
 class Booking:
-    def __init__(self, ip_address, contact_first_name="", contact_last_name="", contact_position="", contact_email="", contact_phone="", country="", org_name="", org_email="", org_address="", org_address_postcode="", org_website="", org_phone="", participants=None):
+    def __init__(self, ip_address, contact_first_name="", contact_last_name="", contact_position="", contact_email="", contact_phone="", country="", org_name="", org_address="", org_address_postcode="", participants=None):
         self.ip_address = ip_address
         self.contact_first_name = contact_first_name
         self.contact_last_name = contact_last_name
@@ -12,11 +12,8 @@ class Booking:
         self.contact_phone = contact_phone
         self.country = country
         self.org_name = org_name
-        self.org_email = org_email
         self.org_address = org_address
         self.org_address_postcode = org_address_postcode
-        self.org_website = org_website
-        self.org_phone = org_phone
         self.participants = participants
 
     @classmethod
@@ -32,11 +29,8 @@ class Booking:
             dict['contact_phone'],
             dict['country'],
             dict['org_name'],
-            dict['org_email'],
             dict['org_address'],
             dict['org_address_postcode'],
-            dict['org_website'],
-            dict['org_phone'],
             dict['participants'])
 
     @property
@@ -50,11 +44,8 @@ class Booking:
             'Contact - Email': self.contact_email,
             'Contact - Phone': self.contact_phone,
             'Organisation - Name': self.org_name,
-            'Organisation - Email': self.org_email,
             'Organisation - Address': self.org_address,
             'Organisation - Postcode': self.org_address,
-            'Organisation - Website': self.org_website,
-            'Organisation - Phone': self.org_phone,
             'IP Address': self.ip_address
             }
 
@@ -78,10 +69,14 @@ class Booking:
 
     @property
     def booking_value(self):
+        if self.participants == None:
+            return 0
         return self.participants * self.fee_per_participant
 
     @property
     def min_participants(self):
+        if self.participants == None:
+            return 0
         if self.participants == 1:
             return 1
         return math.floor(self.participants*.9)

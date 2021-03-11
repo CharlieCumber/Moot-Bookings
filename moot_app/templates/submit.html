@@ -17,12 +17,12 @@
                 <tr>
                   <th scope="row">Country</th>
                   <td>{{ booking.country }}</td>
-                  <td><a href="{{ url_for('early_bird_form', _anchor=form.country.name ) }}">Change</a></td>
+                  <td><a href="/form/edit#{{ form.country.name }}">Change</a></td>
                 </tr>
                 <tr>
                   <th scope="row">Organisation</th>
                   <td>{{ booking.org_name }}</td>
-                  <td><a href="{{ url_for('early_bird_form', _anchor=form.org_name.name ) }}">Change</a></td>
+                  <td><a href="/form/edit#{{ form.org_name.name }}">Change</a></td>
                 </tr>
                 <tr>
                   <th scope="row">Address</th>
@@ -30,7 +30,7 @@
                     {{ booking.org_address }}<br>
                     {{ booking.org_address_postcode }}
                   </td>
-                  <td><a href="{{ url_for('early_bird_form', _anchor=form.org_address.name ) }}">Change</a></td>
+                  <td><a href="/form/edit#{{ form.org_address.name }}">Change</a></td>
                 </tr>
                 <tr>
                   <th scope="row">Primary contact</th>
@@ -39,12 +39,12 @@
                     {{ booking.contact_position }}<br>
                     {{ booking.contact_email }}
                   </td>
-                  <td><a href="{{ url_for('early_bird_form', _anchor=form.contact_first_name.name ) }}">Change</a></td>
+                  <td><a href="/form/edit#{{ form.contact_first_name.name }}">Change</a></td>
                 </tr>
                 <tr>
                   <th scope="row">Participants</th>
                   <td>{{ booking.participants }}</td>
-                  <td><a href="{{ url_for('early_bird_form', _anchor=form.participants.name ) }}">Change</a></td>
+                  <td><a href="/form/edit#{{ form.participants.name }}">Change</a></td>
                 </tr>
                 <tr>
                   <td>
