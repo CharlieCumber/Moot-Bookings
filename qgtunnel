@@ -1,0 +1,6 @@
+
+[qgtunnel.0]
+accept = "127.0.0.1:5432"
+connect = "moot2022.postgres.database.azure.com:5432"
+encrypted = false
+transparent = true

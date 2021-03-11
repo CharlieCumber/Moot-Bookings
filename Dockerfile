@@ -77,4 +77,4 @@ WORKDIR /app
 EXPOSE 6000
 ENV FLASK_ENV=production
 ENV PORT=5000
-CMD gunicorn --bind 0.0.0.0:${PORT} 'moot_app.app:create_app()'
+CMD bin/qgtunnel gunicorn --bind 0.0.0.0:${PORT} 'moot_app.app:create_app()'
