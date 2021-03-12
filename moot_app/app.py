@@ -26,8 +26,19 @@ def create_app():
         if form.validate_on_submit():
             form.populate_obj(booking)
             session['booking'] = booking.__dict__
-            return render_template('submit.html', form=form, booking=booking)
+            return render_template('standard_booking_estimates.html', form=form, booking=booking)
         return render_template('early_bird_form.html', form=form)
+
+    @app.route('/form/standard', methods=['GET', 'POST'])
+    def standard_estimates():
+        booking = Booking.fromDictionary(request.remote_addr, session.get('booking', None))
+        form = BookingForm(obj=booking)
+        form.terms_acceptance.validators=[Optional()]
+        if form.validate_on_submit():
+            form.populate_obj(booking)
+            session['booking'] = booking.__dict__
+            return render_template('submit.html', form=form, booking=booking)
+        return render_template('standard_booking_estimates.html', form=form)
 
     @app.route('/submit', methods=['POST'])
     def submit():

@@ -3,7 +3,7 @@ import math
 from moot_app.data.countries import Countries
 
 class Booking:
-    def __init__(self, ip_address, contact_first_name="", contact_last_name="", contact_position="", contact_email="", contact_phone="", country="", org_name="", org_address="", org_address_postcode="", participants=None):
+    def __init__(self, ip_address, contact_first_name="", contact_last_name="", contact_position="", contact_email="", contact_phone="", country="", org_name="", org_address="", org_address_postcode="", participants=None, standard_participants=None, standard_IST=None, standard_CMT=None):
         self.ip_address = ip_address
         self.contact_first_name = contact_first_name
         self.contact_last_name = contact_last_name
@@ -15,6 +15,10 @@ class Booking:
         self.org_address = org_address
         self.org_address_postcode = org_address_postcode
         self.participants = participants
+        self.standard_participants = standard_participants
+        self.standard_IST = standard_IST
+        self.standard_CMT = standard_CMT
+
 
     @classmethod
     def fromDictionary(cls, ip_address, dict=None):
@@ -31,7 +35,10 @@ class Booking:
             dict['org_name'],
             dict['org_address'],
             dict['org_address_postcode'],
-            dict['participants'])
+            dict['participants'],
+            dict['standard_participants'],
+            dict['standard_IST'],
+            dict['standard_CMT'])
 
     @property
     def toSheetColumnDict(self):
@@ -45,7 +52,10 @@ class Booking:
             'Contact - Phone': self.contact_phone,
             'Organisation - Name': self.org_name,
             'Organisation - Address': self.org_address,
-            'Organisation - Postcode': self.org_address,
+            'Organisation - Postcode': self.org_address_postcode,
+            'Standard Participants Estimate': self.standard_participants,
+            'Standard IST Estimate': self.standard_IST,
+            'Standard CMT Estimate': self.standard_CMT,
             'IP Address': self.ip_address
             }
 

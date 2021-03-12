@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <form action="/form/standard" method="POST">
+        {{ form.csrf_token }}
+        {{ error_summary(form) }}
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Standard booking estimates</h2>
+            </div>
+        </div>
+        <P>
+            <strong class="text-danger">TODO: add some clarification on who is a participant, IST or CMT.</strong>
+        </P>
+        <div class="alert alert-primary mt-2 mb-4" role="alert">
+            <p>The standard booking phase will open later this year, closing on the 31<sup>st</sup> September. During the standard booking phase you will be able to book for IST, CMT, as well as additional participants beyond your early bird booking.</p>
+            <span>We are asking for a prediction of what you are likely to request in September. <strong>This is not a commitment to make a standard booking.</strong></span>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                {{ form_field(form.standard_participants) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                {{ form_field(form.standard_IST) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                {{ form_field(form.standard_CMT) }}
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col">
+                <input type="submit" class="btn btn-primary btn-lg" value="Continue">
+            </div>
+        </div>
+    </form>
+{% endblock %}

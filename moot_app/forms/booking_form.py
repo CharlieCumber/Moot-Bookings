@@ -14,4 +14,7 @@ class BookingForm(FlaskForm):
     org_address_postcode = StringField(u'Postal code', validators=[Optional()])
     country = SelectField(u'Country', choices=[("", "Select country")] + [(x['name'], x['name']) for x in Countries], validators=[DataRequired()])
     participants = IntegerField(u'Participants', validators=[DataRequired(), NumberRange(min=1, message="Enter a number from 1 to 500"), NumberRange(max=500, message="Bookings are limited to 500.")])
+    standard_participants = IntegerField(u'Additional participants', validators=[Optional()])
+    standard_IST = IntegerField(u'IST', validators=[Optional()])
+    standard_CMT = IntegerField(u'CMT', validators=[Optional()])
     terms_acceptance = BooleanField(u'Terms and Conditions acceptance', validators=[InputRequired()])

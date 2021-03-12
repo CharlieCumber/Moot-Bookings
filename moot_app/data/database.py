@@ -11,8 +11,11 @@ def insert_booking(booking):
         hoc_phone_number,
         hoc_address_line_1,
         hoc_address_line_2,
-        number_of_earlybird_tickets) 
-        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        number_of_earlybird_tickets,
+        number_of_participants,
+        number_of_ist,
+        number_of_cmt) 
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
         RETURNING registration_number;"""
     
     conn = None
@@ -27,15 +30,18 @@ def insert_booking(booking):
             database = environ.get('DATABASE_NAME'))
         cur = conn.cursor()
         cur.execute(sql, (
-            booking.country,                # country_name
-            booking.org_name,               # group_name
-            booking.contact_full_name,      # hoc_name
-            booking.contact_position,       # submitted_by_hoc
-            booking.contact_email,          # hoc_email
-            booking.contact_phone,          # hoc_phone_number
-            booking.org_address,            # hoc_address_line_1
-            booking.org_address_postcode,   # hoc_address_line_2
-            booking.participants))          # number_of_earlybird_tickets
+            booking.country,                    # country_name
+            booking.org_name,                   # group_name
+            booking.contact_full_name,          # hoc_name
+            booking.contact_position,           # submitted_by_hoc
+            booking.contact_email,              # hoc_email
+            booking.contact_phone,              # hoc_phone_number
+            booking.org_address,                # hoc_address_line_1
+            booking.org_address_postcode,       # hoc_address_line_2
+            booking.participants,               # number_of_earlybird_tickets
+            booking.standard_participants,      # number_of_participants
+            booking.standard_IST,               # number_of_ist
+            booking.standard_CMT))              # number_of_cmt
         conn.commit()
         registration_number = cur.fetchone()
         cur.close()
