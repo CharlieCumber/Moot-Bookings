@@ -1,7 +1,7 @@
 Countries = [
     {
         "name": "Afghanistan",
-        "fee_category": "D"
+        "fee_category": "A"
     },
     {
         "name": "Algeria",
@@ -286,10 +286,6 @@ Countries = [
     {
         "name": "Indonesia",
         "fee_category": "B"
-    },
-    {
-        "name": "Iran",
-        "fee_category": "D"
     },
     {
         "name": "Iraq",
