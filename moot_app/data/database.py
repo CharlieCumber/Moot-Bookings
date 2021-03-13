@@ -2,15 +2,15 @@ from os import environ
 import psycopg2
 
 def insert_booking(booking):
-    sql = """INSERT INTO reg_earlybird_registrations(
+    sql = """INSERT INTO earlybird_staging_table(
         country_name,
         group_name,
         hoc_name,
-        submitted_by_hoc,
+        submitted_by_role,
         hoc_email,
         hoc_phone_number,
         hoc_address_line_1,
-        hoc_address_line_2,
+        hoc_postcode,
         number_of_earlybird_tickets,
         number_of_participants,
         number_of_ist,
@@ -33,11 +33,11 @@ def insert_booking(booking):
             booking.country,                    # country_name
             booking.org_name,                   # group_name
             booking.contact_full_name,          # hoc_name
-            booking.contact_position,           # submitted_by_hoc
+            booking.contact_position,           # submitted_by_role
             booking.contact_email,              # hoc_email
             booking.contact_phone,              # hoc_phone_number
             booking.org_address,                # hoc_address_line_1
-            booking.org_address_postcode,       # hoc_address_line_2
+            booking.org_address_postcode,       # hoc_postcode
             booking.participants,               # number_of_earlybird_tickets
             booking.standard_participants,      # number_of_participants
             booking.standard_IST,               # number_of_ist
