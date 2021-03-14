@@ -9,26 +9,53 @@
                 <h2>Standard booking estimates</h2>
             </div>
         </div>
-        <P>
-            <strong class="text-danger">TODO: add some clarification on who is a participant, IST or CMT.</strong>
-        </P>
-        <div class="alert alert-primary mt-2 mb-4" role="alert">
-            <p>The standard booking phase will open later this year, closing on the 31<sup>st</sup> September. During the standard booking phase you will be able to book for IST, CMT, as well as additional participants beyond your early bird booking.</p>
-            <span>We are asking for a prediction of what you are likely to request in September. <strong>This is not a commitment to make a standard booking.</strong></span>
-        </div>
         <div class="row">
-            <div class="col-sm-3">
-                {{ form_field(form.standard_participants) }}
+            <div class="col-lg-9">
+                <div class="alert alert-primary mt-2 mb-4" role="alert">
+                    <p>The standard booking phase will open later this year, closing on the 31<sup>st</sup> September. During the standard booking phase you will be able to book for IST, CMT, as well as additional participants beyond your early bird booking.</p>
+                    <span>We are asking for a prediction of what you are likely to request in September. <strong>This is not a commitment to make a standard booking.</strong></span>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-3">
+        <div class="row mt-3">
+            <div class="col-lg-9">
+                <h3>Contingent Management Team</h3>
+                <p>
+                    We recommend that members of Contingent Management Teams are aged 27 years old or above as the CMT responsibilities will likely distract from their participation in the Moot. 
+                    However, we recognise some contingents may need to have CMT members aged 18 to 26 years. If members of a CMT are of participant age, they will be subject to the higher participant fees
+                    and should be counted within the participant numbers for the purpose of booking.
+                </p>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-md-4">
+                {{ form_field(form.standard_CMT) }}
+            </div>
+        </div>
+        <hr>
+        <div class="row mt-5">
+            <div class="col-lg-9">
+                <h3>International Service Team</h3>
+                <p>Individuals aged 27 years and above on the first day of the Moot (18<sup>th</sup> July 2022) can attend as members of the International Service Team. 
+                    In effect this means that IST must have been born on or before the 18<sup>th</sup> July 1995.
+                </p>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-md-4">
                 {{ form_field(form.standard_IST) }}
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-3">
-                {{ form_field(form.standard_CMT) }}
+        <hr>
+        <div class="row mt-5">
+            <div class="col-lg-9">
+                <h3>Additional participants</h3>
+                <p>During the standard booking period you will have a second opportunity to secure participant spaces to attend the Moot.</p>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-md-4">
+                {{ form_field(form.standard_participants) }}
             </div>
         </div>
         <div class="row my-5">

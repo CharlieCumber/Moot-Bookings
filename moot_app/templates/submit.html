@@ -88,22 +88,27 @@
                 This means that by submitting the form <strong>you are commiting to pay a minimum of € {{ booking.min_value | numberFormat }}</strong> ({{ booking.min_participants }} participants) by the 1<sup>st</sup> September 2021.
               </li>
               <li>
-                If a contingent only makes a partial payment for their allocation of early bird spaces by the 1st September 2021, all spaces booked will default to full-price, and the remaining balance will be due by the standard booking payment conditions and deadlines.
+                If a contingent only makes a partial payment for their allocation of early bird spaces by the 1<sup>st</sup> September 2021, all spaces booked will default to full-price, and the remaining balance will be due by the standard booking payment conditions and deadlines.
               </li>
               <li>
-                Any additional participants, either beyond the 10% flexibility, or booking after the 31st July 2021, will follow the standard booking procedure and be subject to the standard booking process which will open in September 2021.
+                Any additional participants, either beyond the 10% flexibility, or booked after the 31<sup>st</sup> July 2021, will follow the standard booking procedure and be subject to the standard booking process which will open in September 2021.
+              </li>
+              <li>
+                You are giving the 16<sup>th</sup> World Scout Moot permission to hold and process your personal data provided in accordance with GDPR and <a href="https://www.scouts.ie/Scouter/Management-Resources/Policies-Procedures/All-Official-Policies/SID-76-11-Data-Protection-Policy.pdf" target="_blank">Scouting Ireland's Data Protection Policy</a>.
               </li>
             </ul>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-9">
+        <div class="row my-4">
+          <div class="col-lg-9">
             <div class="row">
-              <div class="col-auto">
-                {{ form.terms_acceptance }}
+              <div class="col-1">
+                {{ form.terms_acceptance(style="width:25px; height:25px; margin-right:30px;") }}
               </div>
-              <div class="col text-danger">
-                <strong>TODO: </strong> write clear declaration of adherance to the T&Cs, confirmation the person is empowered to make a financial commitment on behalf of their NSO and they give GDPR consent to processing of their personal data.
+              <div class="col">
+                <label class="no-copy" for="{{ form.terms_acceptance.name }}">
+                  I confirm that I am empowered to act on behalf of <strong>{{ booking.org_name }}</strong> and accept this booking is subject to the 16<sup>th</sup> World Scout Moot Terms and Conditions.
+                </label>
               </div>
             </div>
           </div>
