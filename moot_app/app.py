@@ -47,8 +47,8 @@ def create_app():
         if form.validate_on_submit():
             form.populate_obj(booking)
             smartsheet.create_booking(booking)
-            database.insert_booking(booking)
-            return render_template('confirmation.html', booking=booking)
+            ref = database.insert_booking(booking)
+            return render_template('confirmation.html', booking=booking, ref=ref)
         return render_template('submit.html', form=form, booking=booking)
 
     @app.before_request

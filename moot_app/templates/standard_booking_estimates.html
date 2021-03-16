@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <form action="/form/standard#jumbotron" method="POST">
+    <form action="/form/standard" method="POST">
         {{ form.csrf_token }}
         {{ error_summary(form) }}
         {{ form.contact_first_name(type="hidden", required=False, style="display: none;") }}

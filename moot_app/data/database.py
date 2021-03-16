@@ -43,7 +43,7 @@ def insert_booking(booking):
             booking.standard_IST,               # number_of_ist
             booking.standard_CMT))              # number_of_cmt
         conn.commit()
-        registration_number = cur.fetchone()
+        registration_number = cur.fetchone()[0]
         cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
