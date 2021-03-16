@@ -3,15 +3,61 @@
 {% block content %}
     <div class="row">
         <div class="col-lg-9">
-            <h2>Early Bird Bookings</h2>
-            <p class="text-danger"><strong>TODO:</strong> Some introductory text on what the early bird offer is... (important dates, fees table, World Conference viability assessment dates, how standard bookings will work, general moot planning timeline)</strong><br>
+            <h2 class="my-3">Early Bird Bookings</h2>
+            <p class="lead">
+              Welcome to the Early Bird Booking portal. The following form will allow you to an Early Bird Participant Booking.
+            </p>
+            <p>
+              Early Bird Bookings will be accepted until the 30<sup>th</sup> April 2021.
+              You may increase or decrease your Early Bird Commitment by 10% without penalty before the 31<sup>st</sup> July 2021.
+              Payment for your Early Bird commitements is due by the 1<sup>st</sup> September 2021.
+              You can find the complete registration and fee schedule in <a href="https://www.worldscoutmoot.ie/resources/" target="_blank">Bulletin 1</a>.
+            </p>
+            <p>
+              Any questions about this form or registration should be directed to <a href="mailto:contingentsupport@moot2021.ie" target="_blank">contingentsupport@moot2021.ie</a>
+            </p>
+          </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+            <table class="table my-4">
+              <thead>
+                  <tr>
+                      <td><a href="https://www.scout.org/nsowsefees" target="_blank">Country Fee Group</a></td>
+                      <td>Early Bird Participant Fee</td>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>A</td>
+                      <td>€ 225</td>
+                  </tr>
+                  <tr>
+                      <td>B</td>
+                      <td>€ 450</td>
+                  </tr>
+                  <tr>
+                      <td>C</td>
+                      <td>€ 675</td>
+                  </tr>
+                  <tr>
+                      <td>D</td>
+                      <td>€ 900</td>
+                  </tr>
+              </tbody>
+              </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-9">
             <div class="alert alert-info my-4" role="alert">
               <p>Only National Scout Organisations (NSO) with WOSM membership may register a Contingent, and there can only be one Contingent per NSO.</p>
-              <span>You should only complete this form if you are empowered to represent your NSO and make a financial commitment on behalf of your organisation.</span>
+              <p>You should only complete this form if you are empowered to represent your NSO.</P>
+              <span>By filling out this form, you are making a financial commitment on behalf of your organisation.</span>
             </div>
         </div>
     </div>
-    <div class="row my-5">
+    <div class="row my-4">
       <div class="col">
         {% if request.MOBILE %}
           <a class="btn btn-lg btn-primary" target="_blank" href="https://moot-bookings.herokuapp.com/form?iframeMode=false">Start</a>
