@@ -10,9 +10,19 @@
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/site.css') }}" />
     <script src="{{ url_for('static', filename='js/iframeResizer.contentWindow.min.js' )}}"></script>
+    <script>
+      function scrollPageOnLoad() {
+        var hash = window.location.hash;
+        if(!hash) {
+          if ('parentIFrame' in window) {
+            parentIFrame.scrollTo(0,0);
+          }
+        }
+      }
+    </script>
     <title>{% block title %}16th World Scout Moot - Ireland 2022{% endblock %}</title>
   </head>
-  <body onload="window.parent.parent.scrollTo(0,0)">
+  <body onload="scrollPageOnLoad()">
     {% if not session['iframeMode'] == true %}
       {% set main_container_class = "container body-content" %}
       {% block nav %}
