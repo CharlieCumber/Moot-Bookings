@@ -89,8 +89,7 @@ $ echo "$HEROKU_API_KEY" | docker login --username=_ --password-stdin registry.h
 
 Secondly, build and push the image to the heroku image repository:
 ```bash
-$ docker build --target production --tag moot-app .
-$ docker image tag moot-app registry.heroku.com/moot-bookings/web
+$ docker build --target production --tag registry.heroku.com/moot-bookings/web .
 $ docker push registry.heroku.com/moot-bookings/web
 ```
 
