@@ -5,6 +5,19 @@
     <div class="col">
       <form action="/submit" method="POST">
         {{ form.csrf_token }}
+        {{ form.contact_first_name(type="hidden", required=False, style="display: none;") }}
+        {{ form.contact_last_name(type="hidden", required=False, style="display: none;") }}
+        {{ form.contact_position(type="hidden", required=False, style="display: none;") }}
+        {{ form.contact_email(type="hidden", required=False, style="display: none;") }}
+        {{ form.contact_phone(type="hidden", required=False, style="display: none;") }}
+        {{ form.country(type="hidden", required=False, style="display: none;") }}
+        {{ form.org_name(type="hidden", required=False, style="display: none;") }}
+        {{ form.org_address(type="hidden", required=False, style="display: none;") }}
+        {{ form.org_address_postcode(type="hidden", required=False, style="display: none;") }}
+        {{ form.participants(type="hidden", required=False, style="display: none;") }}
+        {{ form.standard_CMT(type="hidden", required=False, style="display: none;") }}
+        {{ form.standard_IST(type="hidden", required=False, style="display: none;") }}
+        {{ form.standard_participants(type="hidden", required=False, style="display: none;") }}
         <div class="row">
           <div class="col-md-12">
             <h2>Booking summary</h2>
