@@ -73,12 +73,13 @@ Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser
 
 ## Deployment
 
-Travis CI is used to provide a continuous delivery of changes to the [deployed application on heroku]('https://moot-bookings.herokuapp.com/').
-The pipeline builds a docker image of the production configured application and pushes the image to the heroku image repository for release.
+The deployed application uses QuotaGuardStatic to forward all calls to the database via a static IP. The first time you wish to deploy the application you will need to get a binary file required by the QuotaGuardStatic. 
 
-### Manual Deployment
+Download and extract the qgtunnel in the root directory of your app:
+```bash
+$ curl https://s3.amazonaws.com/quotaguard/qgtunnel-latest.tar.gz | tar xz  # (first time only)
+```
 
-You can manually deploy the application from the terminal, but note this deployment will be overwritten should the automatic deployment pipline be triggered by a commit to master.
 Before running the code below, ensure you have docker desktop running.
 
 Firstly, get the heroku api key and set it as an enviroment variable. Then you will be able to log into the heroku docker image repository:
