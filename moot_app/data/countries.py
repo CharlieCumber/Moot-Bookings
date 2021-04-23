@@ -5,15 +5,15 @@ Countries = [
     },
     {
         "name": "Algeria",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Angola",
-        "fee_category": "C"
+        "fee_category": "A"
     },
     {
         "name": "Argentina",
-        "fee_category": "D"
+        "fee_category": "C"
     },
     {
         "name": "Armenia",
@@ -33,7 +33,7 @@ Countries = [
     },
     {
         "name": "Azerbaijan",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Bahamas",
@@ -45,15 +45,15 @@ Countries = [
     },
     {
         "name": "Bangladesh",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Barbados",
-        "fee_category": "D"
+        "fee_category": "C"
     },
     {
         "name": "Belarus",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Belgium",
@@ -69,7 +69,7 @@ Countries = [
     },
     {
         "name": "Bhutan",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Bolivarian Republic of Venezuela",
@@ -77,7 +77,7 @@ Countries = [
     },
     {
         "name": "Bosnia and Herzegovina",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Botswana",
@@ -85,7 +85,7 @@ Countries = [
     },
     {
         "name": "Brazil",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Brunei Darussalam",
@@ -93,7 +93,7 @@ Countries = [
     },
     {
         "name": "Bulgaria",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Burkina Faso",
@@ -109,11 +109,11 @@ Countries = [
     },
     {
         "name": "Cambodia",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Cameroon",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Canada",
@@ -125,11 +125,11 @@ Countries = [
     },
     {
         "name": "Chile",
-        "fee_category": "D"
+        "fee_category": "C"
     },
     {
         "name": "Colombia",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Comoros",
@@ -141,7 +141,7 @@ Countries = [
     },
     {
         "name": "Croatia",
-        "fee_category": "D"
+        "fee_category": "C"
     },
     {
         "name": "Curaçao",
@@ -152,12 +152,12 @@ Countries = [
         "fee_category": "D"
     },
     {
-        "name": "Czech Republic",
-        "fee_category": "D"
+        "name": "Czechia",
+        "fee_category": "C"
     },
     {
         "name": "Côte d'lvoire",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Democratic Republic of the Congo",
@@ -177,11 +177,11 @@ Countries = [
     },
     {
         "name": "Dominican Republic",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Ecuador",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Egypt",
@@ -205,7 +205,7 @@ Countries = [
     },
     {
         "name": "Fiji",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Finland",
@@ -225,7 +225,7 @@ Countries = [
     },
     {
         "name": "Georgia",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Germany",
@@ -233,7 +233,7 @@ Countries = [
     },
     {
         "name": "Ghana",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Greece",
@@ -257,7 +257,7 @@ Countries = [
     },
     {
         "name": "Guyana",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Haiti",
@@ -273,7 +273,7 @@ Countries = [
     },
     {
         "name": "Hungary",
-        "fee_category": "D"
+        "fee_category": "C"
     },
     {
         "name": "Iceland",
@@ -281,7 +281,7 @@ Countries = [
     },
     {
         "name": "India",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Indonesia",
@@ -305,7 +305,7 @@ Countries = [
     },
     {
         "name": "Jamaica",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Japan",
@@ -313,15 +313,15 @@ Countries = [
     },
     {
         "name": "Jordan",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Kazakhstan",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Kenya",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Kiribati",
@@ -333,7 +333,7 @@ Countries = [
     },
     {
         "name": "Latvia",
-        "fee_category": "D"
+        "fee_category": "C"
     },
     {
         "name": "Lebanon",
@@ -341,7 +341,7 @@ Countries = [
     },
     {
         "name": "Lesotho",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Liberia",
@@ -357,7 +357,7 @@ Countries = [
     },
     {
         "name": "Lithuania",
-        "fee_category": "D"
+        "fee_category": "C"
     },
     {
         "name": "Luxembourg",
@@ -381,7 +381,7 @@ Countries = [
     },
     {
         "name": "Maldives",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Malta",
@@ -389,7 +389,7 @@ Countries = [
     },
     {
         "name": "Mauritania",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Mauritius",
@@ -405,11 +405,11 @@ Countries = [
     },
     {
         "name": "Mongolia",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Montenegro",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Morocco",
@@ -425,7 +425,7 @@ Countries = [
     },
     {
         "name": "Namibia",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Nepal",
@@ -441,7 +441,7 @@ Countries = [
     },
     {
         "name": "Nicaragua",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Niger",
@@ -449,11 +449,11 @@ Countries = [
     },
     {
         "name": "Nigeria",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "North Macedonia",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Norway",
@@ -461,11 +461,11 @@ Countries = [
     },
     {
         "name": "Oman",
-        "fee_category": "D"
+        "fee_category": "C"
     },
     {
         "name": "Pakistan",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Panama",
@@ -473,15 +473,15 @@ Countries = [
     },
     {
         "name": "Papua New Guinea",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Paraguay",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Peru",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Phillipines",
@@ -493,7 +493,7 @@ Countries = [
     },
     {
         "name": "Poland",
-        "fee_category": "D"
+        "fee_category": "C"
     },
     {
         "name": "Portugal",
@@ -509,15 +509,15 @@ Countries = [
     },
     {
         "name": "Republic of Moldova",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Romania",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Russian Federation",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Rwanda",
@@ -537,7 +537,7 @@ Countries = [
     },
     {
         "name": "Saudi Arabia",
-        "fee_category": "D"
+        "fee_category": "C"
     },
     {
         "name": "Scouts of China (Taiwan)",
@@ -549,11 +549,11 @@ Countries = [
     },
     {
         "name": "Serbia",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Seychelles",
-        "fee_category": "D"
+        "fee_category": "C"
     },
     {
         "name": "Sierra Leone",
@@ -565,7 +565,7 @@ Countries = [
     },
     {
         "name": "Slovakia",
-        "fee_category": "D"
+        "fee_category": "c"
     },
     {
         "name": "Slovenia",
@@ -573,7 +573,7 @@ Countries = [
     },
     {
         "name": "South Africa",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "South Sudan",
@@ -593,11 +593,11 @@ Countries = [
     },
     {
         "name": "Sudan",
-        "fee_category": "B"
+        "fee_category": "C"
     },
     {
         "name": "Suriname",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Sweden",
@@ -617,11 +617,11 @@ Countries = [
     },
     {
         "name": "Tajikistan",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Thailand",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Timor-Leste",
@@ -633,7 +633,7 @@ Countries = [
     },
     {
         "name": "Trinidad and Tobago",
-        "fee_category": "D"
+        "fee_category": "C"
     },
     {
         "name": "Tunisia",
@@ -641,7 +641,7 @@ Countries = [
     },
     {
         "name": "Turkey",
-        "fee_category": "C"
+        "fee_category": "B"
     },
     {
         "name": "Uganda",
@@ -669,7 +669,7 @@ Countries = [
     },
     {
         "name": "Uruguay",
-        "fee_category": "D"
+        "fee_category": "C"
     },
     {
         "name": "Vietnam",
@@ -677,11 +677,11 @@ Countries = [
     },
     {
         "name": "Yemen",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Zambia",
-        "fee_category": "B"
+        "fee_category": "A"
     },
     {
         "name": "Zimbabwe",
