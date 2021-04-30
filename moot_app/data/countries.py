@@ -193,7 +193,7 @@ Countries = [
     },
     {
         "name": "Estonia",
-        "fee_category": "D"
+        "fee_category": "C"
     },
     {
         "name": "Eswatini",
