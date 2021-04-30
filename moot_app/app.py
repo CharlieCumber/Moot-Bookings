@@ -1,4 +1,6 @@
+from os import environ
 from flask import Flask, render_template, request, redirect, session, url_for
+from functools import wraps
 from wtforms.validators import Optional
 from flask_mobility import Mobility
 
@@ -7,18 +9,30 @@ from moot_app.data.booking import Booking
 from moot_app.forms.booking_form import BookingForm
 from moot_app.data import smartsheet, database
 
+def early_bird_route(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if environ.get('EARLY_BIRD_OPEN') == "True":
+            return f(*args, **kwargs)
+        if 'ebpassword' in session and session['ebpassword'] == environ.get('LATE_EARLY_BIRD_PASSWORD'):
+            return f(*args, **kwargs)
+        return render_template('early_bird_closed.html')
+    return decorated_function
+
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
     Mobility(app)
 
     @app.route('/', methods=['GET'])
+    @early_bird_route
     def index():
         session.pop('booking', None)
         return render_template('index.html')
 
     @app.route('/form', methods=['GET', 'POST'])
     @app.route('/form/edit')
+    @early_bird_route
     def early_bird_form():
         booking = Booking.fromDictionary(request.remote_addr, session.get('booking', None))
         form = BookingForm(obj=booking)
@@ -30,6 +44,7 @@ def create_app():
         return render_template('early_bird_form.html', form=form)
 
     @app.route('/form/standard', methods=['GET', 'POST'])
+    @early_bird_route
     def standard_estimates():
         booking = Booking.fromDictionary(request.remote_addr, session.get('booking', None))
         form = BookingForm(obj=booking)
@@ -41,6 +56,7 @@ def create_app():
         return render_template('standard_booking_estimates.html', form=form)
 
     @app.route('/submit', methods=['POST'])
+    @early_bird_route
     def submit():
         booking = Booking.fromDictionary(request.remote_addr, session.get('booking', None))
         form = BookingForm(obj=booking)
@@ -56,6 +72,12 @@ def create_app():
         url_arg = request.args.get("iframeMode", 'not-set')
         if url_arg != 'not-set':
             session['iframeMode'] = (url_arg == "true")
+
+    @app.before_request
+    def set_iframe_session_var():
+        url_arg = request.args.get("ebpassword", 'not-set')
+        if url_arg != 'not-set':
+            session['ebpassword'] = url_arg
 
     @app.errorhandler(500)
     def error(e):
