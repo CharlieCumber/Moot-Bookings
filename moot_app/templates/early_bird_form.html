@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
+    {{ jumbotron("Early Bird Booking") }}
     <form action="/form" method="POST">
         {{ form.csrf_token }}
         {{ error_summary(form) }}
