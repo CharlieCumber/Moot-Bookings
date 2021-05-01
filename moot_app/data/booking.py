@@ -92,5 +92,13 @@ class Booking:
         return math.floor(self.participants*.9)
 
     @property
+    def max_participants(self):
+        if self.participants == None:
+            return 0
+        if self.participants >= 454:
+            return 500
+        return math.ceil(self.participants*1.1)
+
+    @property
     def min_value(self):
         return self.min_participants*self.fee_per_participant

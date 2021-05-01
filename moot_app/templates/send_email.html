@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  {{ jumbotron("Send Email") }}
+  <form method="POST" action="{{ url_for('send_email') }}">
+    <div class="row my-5">
+        <div class="col">
+            <input type="submit" class="btn btn-primary btn-lg" value="Send Email">
+        </div>
+    </div>
+  </form>
+{% endblock %}

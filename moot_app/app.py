@@ -6,8 +6,9 @@ from flask_mobility import Mobility
 
 from moot_app.flask_config import Config
 from moot_app.data.booking import Booking
+from moot_app.forms.admin_login_form import AdminLoginForm
 from moot_app.forms.booking_form import BookingForm
-from moot_app.data import smartsheet, database
+from moot_app.data import smartsheet, database, sendgrid
 
 def early_bird_route(f):
     @wraps(f)
@@ -17,6 +18,14 @@ def early_bird_route(f):
         if 'ebpassword' in session and session['ebpassword'] == environ.get('LATE_EARLY_BIRD_PASSWORD'):
             return f(*args, **kwargs)
         return render_template('early_bird_closed.html')
+    return decorated_function
+
+def admin_rights_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'adminpassword' in session and session['adminpassword'] == environ.get('ADMIN_PASSWORD'):
+            return f(*args, **kwargs)
+        return redirect(url_for('admin_login'))
     return decorated_function
 
 def create_app():
@@ -29,6 +38,21 @@ def create_app():
     def index():
         session.pop('booking', None)
         return render_template('index.html')
+
+    @app.route('/admin-login', methods=['GET', 'POST'])
+    def admin_login():
+        form = AdminLoginForm()
+        if form.validate_on_submit():
+            session['adminpassword'] = form.password.data
+            return redirect(url_for('send_email'))
+        return render_template('admin_login.html', form=form)
+
+    @app.route('/send-email', methods=['GET', 'POST'])
+    @admin_rights_required
+    def send_email():
+        if(request.method == 'POST'):
+            sendgrid.send_early_bird_booking_confirmation()
+        return render_template('send_email.html')
 
     @app.route('/form', methods=['GET', 'POST'])
     @app.route('/form/edit')
