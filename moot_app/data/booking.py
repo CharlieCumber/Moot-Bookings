@@ -3,7 +3,8 @@ import math
 from moot_app.data.countries import Countries
 
 class Booking:
-    def __init__(self, ip_address, contact_first_name="", contact_last_name="", contact_position="", contact_email="", contact_phone="", country="", org_name="", org_address="", org_address_postcode="", participants=None, standard_participants=None, standard_IST=None, standard_CMT=None):
+    def __init__(self, ip_address="", contact_first_name="", contact_last_name="", contact_position="", contact_email="", contact_phone="", country="", org_name="", org_address="", org_address_postcode="", participants=None, standard_participants=None, standard_IST=None, standard_CMT=None, reference=""):
+        self.reference = reference
         self.ip_address = ip_address
         self.contact_first_name = contact_first_name
         self.contact_last_name = contact_last_name
@@ -38,7 +39,27 @@ class Booking:
             dict['participants'],
             dict['standard_participants'],
             dict['standard_IST'],
-            dict['standard_CMT'])
+            dict['standard_CMT'],
+            "")
+
+    @classmethod
+    def fromDatabase(cls, dict):
+        return cls(
+            "",
+            dict['hoc_name'],
+            "",
+            dict['submitted_by_role'],
+            dict['hoc_email'],
+            dict['hoc_phone_number'],
+            dict['country_name'],
+            dict['group_name'],
+            dict['hoc_address_line_1'],
+            dict['hoc_postcode'],
+            dict['number_of_earlybird_tickets'],
+            dict['number_of_participants'],
+            dict['number_of_ist'],
+            dict['number_of_cmt'],
+            dict['registration_number'])
 
     @property
     def toSheetColumnDict(self):

@@ -9,6 +9,7 @@ from moot_app.data.booking import Booking
 from moot_app.forms.admin_login_form import AdminLoginForm
 from moot_app.forms.booking_form import BookingForm
 from moot_app.data import smartsheet, database, sendgrid
+from moot_app.tables.early_bookings_table import EarlyBookingsTable
 
 def early_bird_route(f):
     @wraps(f)
@@ -52,7 +53,9 @@ def create_app():
     def send_email():
         if(request.method == 'POST'):
             sendgrid.send_early_bird_booking_confirmation()
-        return render_template('send_email.html')
+        bookings = database.get_all_bookings()
+        table = EarlyBookingsTable(bookings)
+        return render_template('send_email.html', table=table)
 
     @app.route('/form', methods=['GET', 'POST'])
     @app.route('/form/edit')

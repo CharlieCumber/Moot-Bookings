@@ -1,5 +1,44 @@
 from os import environ
+from moot_app.data.booking import Booking
 import psycopg2
+
+def get_all_bookings():
+    sql = """SELECT registration_number,
+        country_name,
+        group_name,
+        hoc_name,
+        submitted_by_role,
+        hoc_email,
+        hoc_phone_number,
+        hoc_address_line_1,
+        hoc_postcode,
+        number_of_earlybird_tickets,
+        number_of_participants,
+        number_of_ist,
+        number_of_cmt
+        FROM reg_earlybird_registrations ORDER BY registration_id;"""
+
+    conn = None
+    bookings = []
+
+    try:
+        conn = psycopg2.connect(
+            user = environ.get('DATABASE_USERNAME'),
+            password = environ.get('DATABASE_PASSWORD'),
+            host = environ.get('DATABASE_HOST'),
+            port = environ.get('DATABASE_PORT'),
+            database = environ.get('DATABASE_NAME'))
+        cur = conn.cursor()
+        cur.execute(sql)
+        for booking in cur.fetchall():
+            bookings.append(Booking.fromDatabase(booking))
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+        return bookings
 
 def insert_booking(booking):
     sql = """INSERT INTO earlybird_staging_table(

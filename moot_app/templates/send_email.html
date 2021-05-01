@@ -2,6 +2,7 @@
 
 {% block content %}
   {{ jumbotron("Send Email") }}
+  {{ table }}
   <form method="POST" action="{{ url_for('send_email') }}">
     <div class="row my-5">
         <div class="col">
