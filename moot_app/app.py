@@ -68,16 +68,14 @@ def create_app():
         return render_template('submit.html', form=form, booking=booking)
 
     @app.before_request
-    def set_iframe_session_var():
-        url_arg = request.args.get("iframeMode", 'not-set')
-        if url_arg != 'not-set':
-            session['iframeMode'] = (url_arg == "true")
+    def set_session_vars():
+        iframe_url_arg = request.args.get("iframeMode", 'not-set')
+        if iframe_url_arg != 'not-set':
+            session['iframeMode'] = (iframe_url_arg == "true")
 
-    @app.before_request
-    def set_iframe_session_var():
-        url_arg = request.args.get("ebpassword", 'not-set')
-        if url_arg != 'not-set':
-            session['ebpassword'] = url_arg
+        password_url_arg = request.args.get("ebpassword", 'not-set')
+        if password_url_arg != 'not-set':
+            session['ebpassword'] = password_url_arg
 
     @app.errorhandler(500)
     def error(e):
