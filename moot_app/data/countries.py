@@ -565,7 +565,7 @@ Countries = [
     },
     {
         "name": "Slovakia",
-        "fee_category": "c"
+        "fee_category": "C"
     },
     {
         "name": "Slovenia",
