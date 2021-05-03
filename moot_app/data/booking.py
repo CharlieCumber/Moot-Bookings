@@ -3,7 +3,7 @@ import math
 from moot_app.data.countries import Countries
 
 class Booking:
-    def __init__(self, ip_address="", contact_first_name="", contact_last_name="", contact_position="", contact_email="", contact_phone="", country="", org_name="", org_address="", org_address_postcode="", participants=None, standard_participants=None, standard_IST=None, standard_CMT=None, reference=""):
+    def __init__(self, ip_address="", contact_first_name="", contact_last_name="", contact_position="", contact_email="", contact_phone="", country="", org_name="", org_address="", org_address_postcode="", participants="0", standard_participants="0", standard_IST="0", standard_CMT="0", reference="", confirmation_sent="", row_id=""):
         self.reference = reference
         self.ip_address = ip_address
         self.contact_first_name = contact_first_name
@@ -15,10 +15,12 @@ class Booking:
         self.org_name = org_name
         self.org_address = org_address
         self.org_address_postcode = org_address_postcode
-        self.participants = participants
+        self.participants = int(participants)
         self.standard_participants = standard_participants
         self.standard_IST = standard_IST
         self.standard_CMT = standard_CMT
+        self.confirmation_sent = confirmation_sent
+        self.row_id = row_id
 
 
     @classmethod
@@ -39,27 +41,7 @@ class Booking:
             dict['participants'],
             dict['standard_participants'],
             dict['standard_IST'],
-            dict['standard_CMT'],
-            "")
-
-    @classmethod
-    def fromDatabase(cls, dict):
-        return cls(
-            "",
-            dict['hoc_name'],
-            "",
-            dict['submitted_by_role'],
-            dict['hoc_email'],
-            dict['hoc_phone_number'],
-            dict['country_name'],
-            dict['group_name'],
-            dict['hoc_address_line_1'],
-            dict['hoc_postcode'],
-            dict['number_of_earlybird_tickets'],
-            dict['number_of_participants'],
-            dict['number_of_ist'],
-            dict['number_of_cmt'],
-            dict['registration_number'])
+            dict['standard_CMT'])
 
     @property
     def toSheetColumnDict(self):
@@ -102,7 +84,7 @@ class Booking:
     def booking_value(self):
         if self.participants == None:
             return 0
-        return self.participants * self.fee_per_participant
+        return format(int(self.participants * self.fee_per_participant), ',d')
 
     @property
     def min_participants(self):

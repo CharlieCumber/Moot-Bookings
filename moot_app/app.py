@@ -45,17 +45,23 @@ def create_app():
         form = AdminLoginForm()
         if form.validate_on_submit():
             session['adminpassword'] = form.password.data
-            return redirect(url_for('send_email'))
+            return redirect(url_for('early_bird_list'))
         return render_template('admin_login.html', form=form)
 
-    @app.route('/send-email', methods=['GET', 'POST'])
+    @app.route('/early-bird-list')
     @admin_rights_required
-    def send_email():
-        if(request.method == 'POST'):
-            sendgrid.send_early_bird_booking_confirmation()
-        bookings = database.get_all_bookings()
+    def early_bird_list():
+        bookings = smartsheet.get_all_bookings()
         table = EarlyBookingsTable(bookings)
-        return render_template('send_email.html', table=table)
+        return render_template('early_bird_list.html', table=table)
+
+    @app.route('/early-bird-list/<ref>/send-confirmation-email')
+    @admin_rights_required
+    def send_confirmation_email(ref):
+        booking = smartsheet.get_booking(ref)
+        sendgrid.send_early_bird_booking_confirmation(booking)
+        smartsheet.set_booking_confirmation_sent_time(ref)
+        return redirect(url_for('early_bird_list'))
 
     @app.route('/form', methods=['GET', 'POST'])
     @app.route('/form/edit')
