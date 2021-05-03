@@ -20,7 +20,7 @@ class Booking:
         self.standard_IST = standard_IST
         self.standard_CMT = standard_CMT
         self.confirmation_sent = confirmation_sent
-        self.row_id = row_id
+        self.row_id = str(row_id)
 
 
     @classmethod

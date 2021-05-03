@@ -4,6 +4,7 @@ import datetime
 from flask import abort
 
 from moot_app.data.booking import Booking
+from moot_app.data.expression import Expression
 
 def get_auth_header():
     return { 'Authorization': f'Bearer {environ.get("SMARTSHEET_ACCESS_TOKEN")}' }
@@ -105,12 +106,12 @@ def get_all_bookings():
             row['id']))
     return bookings
 
-def get_booking(reference):
+def get_booking(row_id):
     all_bookings = get_all_bookings()
-    return next((booking for booking in all_bookings if booking.reference == reference), None)
+    return next((booking for booking in all_bookings if booking.row_id == row_id), None)
 
-def set_booking_confirmation_sent_time(reference):
-    booking = get_booking(reference)
+def set_booking_confirmation_sent_time(row_id):
+    booking = get_booking(row_id)
     now = datetime.datetime.now()
     booking.confirmation_sent = now.strftime("%d/%m/%Y %H:%M:%S")
 
@@ -125,8 +126,79 @@ def set_booking_confirmation_sent_time(reference):
 
     response = requests.put(url, headers=headers, json=json)
     booking_returned = response.json()
-    print(booking_returned)
     if 'message' in booking_returned and booking_returned['message'] != 'SUCCESS':
         abort(500, response)
 
     return booking
+
+def create_expression(expression):
+    sheet_id = get_sheet_id_by_name('Expressions of Interest - Responses')
+    sheet = get_sheet_by_id(sheet_id)
+    column_map = get_column_map_for_sheet(sheet)
+
+    headers = build_headers({'Content-Type':'application/json'})
+    url = build_url(f'/sheets/{sheet_id}/rows')
+    cells = [{'columnId':column_map[column_name], 'value': value} for (column_name,value) in expression.toSheetColumnDict.items()]
+    json = {"cells": cells}
+
+    response = requests.post(url, headers=headers, json=json)
+    expression = response.json()
+    if 'message' in expression and expression['message'] != 'SUCCESS':
+        abort(500, response)
+
+    return expression
+
+def get_all_expressions():
+    sheet_id = get_sheet_id_by_name('Expressions of Interest - Responses')
+    sheet = get_sheet_by_id(sheet_id)
+    column_map = get_column_map_for_sheet(sheet)
+
+    headers = build_headers({'Content-Type':'application/json'})
+    url = build_url(f'/sheets/{sheet_id}')
+
+    response = requests.get(url, headers=headers)
+    json = response.json()
+    if 'message' in json and json['message'] != 'SUCCESS':
+        abort(500, response)
+
+    expressions = []
+    for row in json['rows']:
+        expressions.append(Expression(
+            get_cell_value_by_column_name(row, "Contact - First Name", column_map),
+            get_cell_value_by_column_name(row, "Contact - Last Name", column_map),
+            get_cell_value_by_column_name(row, "Contact - Position", column_map),
+            get_cell_value_by_column_name(row, "Contact - Email", column_map),
+            get_cell_value_by_column_name(row, "Contact - Phone", column_map),
+            get_cell_value_by_column_name(row, "Country", column_map),
+            get_cell_value_by_column_name(row, "Organisation - Name", column_map),
+            get_cell_value_by_column_name(row, "Participants", column_map),
+            get_cell_value_by_column_name(row, "IST", column_map),
+            get_cell_value_by_column_name(row, "CMT", column_map),
+            get_cell_value_by_column_name(row, "Confirmation Email Sent", column_map),
+            row['id']))
+    return expressions
+
+def get_expression(row_id):
+    all_expressions = get_all_expressions()
+    return next((expression for expression in all_expressions if expression.row_id == row_id), None)
+
+def set_expression_confirmation_sent_time(row_id):
+    expression = get_expression(row_id)
+    now = datetime.datetime.now()
+    expression.confirmation_sent = now.strftime("%d/%m/%Y %H:%M:%S")
+
+    sheet_id = get_sheet_id_by_name('Expressions of Interest - Responses')
+    sheet = get_sheet_by_id(sheet_id)
+    column_map = get_column_map_for_sheet(sheet)
+
+    headers = build_headers({'Content-Type':'application/json'})
+    url = build_url(f'/sheets/{sheet_id}/rows')
+    cells = [{'columnId':column_map['Confirmation Email Sent'], 'value': expression.confirmation_sent}]
+    json = {"id": expression.row_id, "cells": cells}
+
+    response = requests.put(url, headers=headers, json=json)
+    expression_returned = response.json()
+    if 'message' in expression_returned and expression_returned['message'] != 'SUCCESS':
+        abort(500, response)
+
+    return expression

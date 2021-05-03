@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  {{ jumbotron("Expression of Intrest") }}
+    <div class="row">
+        <div class="col-lg-9">
+            <h2 class="my-3">Expression of Intrest</h2>
+            <p class="lead">
+              The following form will allow you to submit an expression of intrest for standard booking of participants, IST and CMT for the 16th World Scout Moot.
+            </p>
+            <p>
+                Standard bookings will open in September 2021.
+                This form is to provide the Moot team with your best estimate of the number of places you are likley to book in September.
+            </p>
+            <p>
+              Any questions about this form or more generally about preparing a contingent to the 16<sup>th</sup> World Scout Moot should be directed to <a href="mailto:contingentsupport@moot2021.ie" target="_blank">contingentsupport@moot2021.ie</a>
+            </p>
+          </div>
+    </div>
+    <div class="row">
+      <div class="col-md-9">
+          <h3 class="my-2">Standard Fees</h3>
+            <table class="table my-4">
+              <thead>
+                  <tr>
+                      <td><a href="https://www.scout.org/nsowsefees" target="_blank">Country Fee Group</a></td>
+                      <td>Participants</td>
+                      <td>IST & CMT</td>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>A</td>
+                      <td>€ 245</td>
+                      <td>€ 200</td>
+                  </tr>
+                  <tr>
+                      <td>B</td>
+                      <td>€ 490</td>
+                      <td>€ 400</td>
+                  </tr>
+                  <tr>
+                      <td>C</td>
+                      <td>€ 735</td>
+                      <td>€ 600</td>
+                  </tr>
+                  <tr>
+                      <td>D</td>
+                      <td>€ 980</td>
+                      <td>€ 800</td>
+                  </tr>
+              </tbody>
+              </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-9">
+            <div class="alert alert-info my-4" role="alert">
+              <p>Only National Scout Organisations (NSO) with WOSM membership may register a Contingent, and there can only be one Contingent per NSO.</p>
+              <span>You should only complete this form if you are empowered to represent your NSO.</span>
+            </div>
+        </div>
+    </div>
+    <div class="row my-4">
+      <div class="col">
+        {% if request.MOBILE %}
+          <a class="btn btn-lg btn-primary" target="_blank" href="https://moot-bookings.herokuapp.com/expression-of-intrest/form?iframeMode=false">Start</a>
+        {% else %}
+          <a class="btn btn-lg btn-primary" href="{{ url_for('expression_of_intrest_form') }}">Start</a>
+        {% endif %}
+      </div>
+    </div>
+{% endblock %}

@@ -37,3 +37,33 @@ def send_early_bird_booking_confirmation(booking):
         print(response.headers)
     except Exception as e:
         print(e.message)
+
+def send_expression_confirmation(expression):
+    if environ.get('SENDGRID_OVERIDE') == 'True':
+        to_email = environ.get('SENDGRID_OVERRIDE_RECIPIENT')
+    else:
+        to_email = expression.contact_email
+
+    message = Mail(
+        from_email='bookings@moot2021.ie',
+        to_emails=to_email)
+    message.dynamic_template_data = {
+        "contact_first_name": expression.contact_first_name,
+        "org_name": expression.org_name,
+        "participants": expression.participants,
+        "IST": expression.IST,
+        "CMT": expression.CMT,
+        "country": expression.country,
+        "contact_full_name": expression.contact_full_name,
+        "contact_position": expression.contact_position,
+        "contact_email": expression.contact_email,
+    }
+    message.template_id = 'd-bfe3dabe28004a9188685d14bb752b12'
+    try:
+        sg = SendGridAPIClient(environ.get('SENDGRID_API_KEY'))
+        response = sg.send(message)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+    except Exception as e:
+        print(e.message)

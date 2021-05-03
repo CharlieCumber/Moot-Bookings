@@ -14,4 +14,4 @@ class EarlyBookingsTable(Table):
     min_participants = Col('Min participants')
     max_participants = Col('Max participants')
     confirmation_sent = Col('confirmation_sent')
-    send_confirmation = LinkCol('Send Confimation', 'send_confirmation_email', url_kwargs=dict(ref='reference'), anchor_attrs={'class': 'btn btn-danger btn-sm'})
+    send_confirmation = LinkCol('Send Confimation', 'send_confirmation_email', url_kwargs=dict(row_id='row_id'), anchor_attrs={'class': 'btn btn-danger btn-sm'})

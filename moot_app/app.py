@@ -6,10 +6,13 @@ from flask_mobility import Mobility
 
 from moot_app.flask_config import Config
 from moot_app.data.booking import Booking
+from moot_app.data.expression import Expression
 from moot_app.forms.admin_login_form import AdminLoginForm
 from moot_app.forms.booking_form import BookingForm
+from moot_app.forms.expression_form import ExpressionForm
 from moot_app.data import smartsheet, database, sendgrid
 from moot_app.tables.early_bookings_table import EarlyBookingsTable
+from moot_app.tables.expressions_table import ExpressionsTable
 
 def early_bird_route(f):
     @wraps(f)
@@ -26,7 +29,7 @@ def admin_rights_required(f):
     def decorated_function(*args, **kwargs):
         if 'adminpassword' in session and session['adminpassword'] == environ.get('ADMIN_PASSWORD'):
             return f(*args, **kwargs)
-        return redirect(url_for('admin_login'))
+        return redirect(url_for('admin_login', redirect_url=request.url))
     return decorated_function
 
 def create_app():
@@ -43,10 +46,11 @@ def create_app():
     @app.route('/admin-login', methods=['GET', 'POST'])
     def admin_login():
         form = AdminLoginForm()
+        redirect_url = request.args.get("redirect_url", '/form/edit')
         if form.validate_on_submit():
             session['adminpassword'] = form.password.data
-            return redirect(url_for('early_bird_list'))
-        return render_template('admin_login.html', form=form)
+            return redirect(redirect_url)
+        return render_template('admin_login.html', form=form, redirect_url=redirect_url)
 
     @app.route('/early-bird-list')
     @admin_rights_required
@@ -55,12 +59,12 @@ def create_app():
         table = EarlyBookingsTable(bookings)
         return render_template('early_bird_list.html', table=table)
 
-    @app.route('/early-bird-list/<ref>/send-confirmation-email')
+    @app.route('/early-bird-list/<row_id>/send-confirmation-email')
     @admin_rights_required
-    def send_confirmation_email(ref):
-        booking = smartsheet.get_booking(ref)
+    def send_confirmation_email(row_id):
+        booking = smartsheet.get_booking(row_id)
         sendgrid.send_early_bird_booking_confirmation(booking)
-        smartsheet.set_booking_confirmation_sent_time(ref)
+        smartsheet.set_booking_confirmation_sent_time(row_id)
         return redirect(url_for('early_bird_list'))
 
     @app.route('/form', methods=['GET', 'POST'])
@@ -99,6 +103,29 @@ def create_app():
             ref = database.insert_booking(booking)
             return render_template('confirmation.html', booking=booking, ref=ref)
         return render_template('submit.html', form=form, booking=booking)
+
+
+    @app.route('/expression-of-intrest')
+    def expression_of_intrest_start():
+        return render_template('expression_start.html')
+
+    @app.route('/expression-of-intrest/form', methods=['GET','POST'])
+    def expression_of_intrest_form():
+        expression = Expression()
+        form = ExpressionForm(obj=expression)
+        if form.validate_on_submit():
+            form.populate_obj(expression)
+            smartsheet.create_expression(expression)
+            sendgrid.send_expression_confirmation(expression)
+            return render_template('expression_confirmation.html')
+        return render_template('expression_form.html', form=form)
+
+    @app.route('/expressions-list')
+    @admin_rights_required
+    def expressions_list():
+        expressions = smartsheet.get_all_expressions()
+        table = ExpressionsTable(expressions)
+        return render_template('expressions_list.html', table=table)
 
     @app.before_request
     def set_session_vars():
