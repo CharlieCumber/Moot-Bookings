@@ -92,6 +92,10 @@ def create_app():
             return render_template('submit.html', form=form, booking=booking)
         return render_template('standard_booking_estimates.html', form=form)
 
+    @app.route('/early-bird/change')
+    def change_early_bird_start():
+        return render_template('early_bird_changes_start.html')
+
     @app.route('/submit', methods=['POST'])
     @early_bird_route
     def submit():
