@@ -125,13 +125,6 @@ def create_app():
             return render_template('expression_confirmation.html')
         return render_template('expression_form.html', form=form)
 
-    @app.route('/expressions-list')
-    @admin_rights_required
-    def expressions_list():
-        expressions = smartsheet.get_all_expressions()
-        table = ExpressionsTable(expressions)
-        return render_template('expressions_list.html', table=table)
-
     @app.before_request
     def set_session_vars():
         iframe_url_arg = request.args.get("iframeMode", 'not-set')

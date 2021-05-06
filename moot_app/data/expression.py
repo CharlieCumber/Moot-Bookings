@@ -36,11 +36,7 @@ class Expression:
     def toSheetColumnDict(self):
         return {
             'Country': self.country,
-            'Contact - First Name': self.contact_first_name,
-            'Contact - Last Name': self.contact_last_name,
             'Contact - Position': self.contact_position,
-            'Contact - Email': self.contact_email,
-            'Contact - Phone': self.contact_phone,
             'Organisation - Name': self.org_name,
             'Participants': self.participants,
             'IST': self.IST,
