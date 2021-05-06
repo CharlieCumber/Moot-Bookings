@@ -10,7 +10,7 @@ from moot_app.data.expression import Expression
 from moot_app.forms.admin_login_form import AdminLoginForm
 from moot_app.forms.booking_form import BookingForm
 from moot_app.forms.expression_form import ExpressionForm
-from moot_app.data import smartsheet, database, sendgrid
+from moot_app.data import smartsheet, database, sendgrid, slack
 from moot_app.tables.early_bookings_table import EarlyBookingsTable
 from moot_app.tables.expressions_table import ExpressionsTable
 
@@ -119,6 +119,7 @@ def create_app():
         form = ExpressionForm(obj=expression)
         if form.validate_on_submit():
             form.populate_obj(expression)
+            slack.send_expression_notification(expression)
             smartsheet.create_expression(expression)
             sendgrid.send_expression_confirmation(expression)
             return render_template('expression_confirmation.html')
